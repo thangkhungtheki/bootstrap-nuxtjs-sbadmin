@@ -26,3 +26,6 @@ This a very basic NUXTJS multi purpose template.
 * AXIOS
 * Vue-validate
 
+https://nuxt-bootstrap-template.pages.dev/
+
+Visit the  [Live Demo URL ](https://nuxt-bootstrap-template.pages.dev/)
