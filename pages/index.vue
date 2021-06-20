@@ -2,7 +2,11 @@
   <div>
     <TopNavBar />
     <div
-      :class="{ 'vertical-nav': true, 'bg-white': true, active: menuclosed }"
+      :class="{
+        'vertical-nav': true,
+        'bg-white': true,
+        active: menuclosed,
+      }"
       id="sidebar"
     >
       <div class="py-4 px-3 mb-4 bg-light">
@@ -88,46 +92,56 @@
       }"
       id="content"
     >
-      <button
-        @click="togglemenu"
-        id="sidebarCollapse"
-        type="button"
-        class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
-      >
-        <i class="fa fa-bars mr-2"></i
-        ><small class="text-uppercase font-weight-bold">Toggle</small>
-      </button>
-
       <CountBar />
 
       <div class="row pt-4" id="tbls">
-        <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
           <b-card
             header-tag="header"
             footer-tag="footer"
-            header="sss"
-            body-class="p-0"
+            header="Table"
+            body-class="p-0 card-fixed"
           >
-            <b-table striped hover :items="items" :fields="fields"></b-table>
+            <b-table hover :items="items" :fields="fields"></b-table>
           </b-card>
         </div>
 
-        <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
           <b-card
             header-tag="header"
             footer-tag="footer"
-            body-class="p-2"
+            body-class="p-2 card-fixed"
             header="Book"
           >
-            <b-card-text>Header and footers using props.</b-card-text>
-            <b-button href="#" variant="primary">Go somewhere</b-button>
+            <!--dummy-->
+            <b-card>
+              <b-skeleton animation="wave" width="85%"></b-skeleton>
+              <b-skeleton animation="wave" width="55%"></b-skeleton>
+              <b-skeleton animation="wave" width="70%"></b-skeleton>
+            </b-card>
+
+            <h5 class="mt-1"></h5>
+            <b-card>
+              <b-skeleton animation="fade" width="85%"></b-skeleton>
+              <b-skeleton animation="fade" width="55%"></b-skeleton>
+              <b-skeleton animation="fade" width="70%"></b-skeleton>
+            </b-card>
+            <!--dummy-->
+            <div class="float-right m-3">
+              <b-button
+                href="#"
+                variant="primary"
+                class="btn btn-light bg-white rounded-pill shadow-sm"
+                ><i class="fa fa-plus"></i
+              ></b-button>
+            </div>
           </b-card>
         </div>
       </div>
 
       <!--dummy-->
       <div class="row pt-4" id="tbls">
-        <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
           <b-card
             header-tag="header"
             footer-tag="footer"
@@ -142,7 +156,7 @@
           </b-card>
         </div>
 
-        <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
           <b-card
             header-tag="header"
             footer-tag="footer"
@@ -163,10 +177,11 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      menuclosed: false,
+      //menuclosed: false,
 
       pieChart: {
         chartOptions: {
@@ -219,7 +234,7 @@ export default {
           {
             label: "Visualizaciones",
             data: [2, 1, 16, 3, 4, 5, 0, 0, 4, 12, 2],
-            backgroundColor: "rgba(20, 255, 0, 0.3)",
+            backgroundColor: "rgba(20, 255, 0, 0.8)",
             borderColor: "rgba(100, 255, 0, 1)",
             borderWidth: 2,
           },
@@ -230,12 +245,12 @@ export default {
         legend: {
           display: false,
         },
-        title: {
+        /*title: {
           display: true,
           text: "Google analytics data",
           fontSize: 24,
           fontColor: "#6b7280",
-        },
+        },*/
         tooltips: {
           backgroundColor: "#17BF62",
         },
@@ -264,16 +279,18 @@ export default {
       },
     };
   },
+  computed: mapState(["menuclosed"]),
   methods: {
     togglemenu() {
-      this.menuclosed = this.menuclosed ? false : true;
+      //this.menuclosed = this.menuclosed ? false : true;
+      this.$store.commit("toggle");
     },
   },
 };
 </script>
 
 <style>
-#tbls .card-body {
+.card-fixed {
   min-height: 300px;
 }
 .vertical-nav {
@@ -306,18 +323,26 @@ export default {
 
 @media (max-width: 768px) {
   #sidebar {
-    margin-left: -17rem;
+    position: absolute;
+    z-index: 1000;
+    left: -17rem;
   }
   #sidebar.active {
     margin-left: 0;
+    position: fixed;
+    z-index: 1000;
+    left: 0rem;
+    height: 100vh;
   }
   #content {
     width: 100%;
     margin: 0;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
   }
   #content.active {
-    margin-left: 17rem;
-    width: calc(100% - 17rem);
+    margin: 0px;
+    width: 100%;
   }
 }
 
@@ -328,7 +353,8 @@ export default {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: black !important;
+  color: #6d6b6b !important;
+  font-family: "Open Sans";
 }
 
 .bg-primary {
@@ -341,4 +367,10 @@ export default {
   background-color: #bada55;
 }
 */
+
+.navbar-brand {
+  color: black;
+  color: #6d6b6b !important;
+  font-family: "Open Sans";
+}
 </style>

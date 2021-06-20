@@ -12,7 +12,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&family=Open+Sans:ital,wght@0,300;0,400;1,300;1,600&display=swap' },
       { rel: 'stylesheet', href: '/css/icons.css',type: 'text/css' }
     ]
   },

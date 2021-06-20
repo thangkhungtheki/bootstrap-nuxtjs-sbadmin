@@ -2,6 +2,27 @@
   <div>
     <div>
       <b-navbar type="dark" variant="primary" fixed="top">
+        <b-navbar-brand href="#">
+          <button
+            @click="togglemenu"
+            id="sidebarCollapse"
+            type="button"
+            class="btn btn-light bg-white"
+          >
+            <i class="fa fa-bars"></i>
+          </button>
+          <img src="https://placekitten.com/g/30/30" alt="Kitten" />
+          Bootstrap Nuxt Minimal Template
+          <!--<button
+            @click="togglemenu"
+            id="sidebarCollapse"
+            type="button"
+            class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+          >
+            <i class="fa fa-bars mr-2"></i
+            ><small class="text-uppercase font-weight-bold">Toggle</small>
+          </button>-->
+        </b-navbar-brand>
         <b-navbar-nav class="ml-auto">
           <b-nav-item href="#">Home</b-nav-item>
 
@@ -24,7 +45,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    togglemenu() {
+      //this.menuclosed = this.menuclosed ? false : true;
+      this.$store.commit("menuToggle");
+    },
+  },
+};
 </script>
 
 <style scoped>

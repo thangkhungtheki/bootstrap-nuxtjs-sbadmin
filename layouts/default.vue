@@ -6,7 +6,7 @@
 
 <style>
 body {
-  font-family: "Roboto", "Source Sans Pro", sans-serif;
+  font-family: "Roboto", "Open Sans", "Source Sans Pro", sans-serif;
   font-size: 14px;
 }
 </style>
