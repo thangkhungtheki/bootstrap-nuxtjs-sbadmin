@@ -80,31 +80,84 @@
 
     <!-- Page content holder -->
     <div
-      :class="{ 'page-content': true, 'p-5': true, active: menuclosed }"
+      :class="{
+        'page-content': true,
+        'p-5': true,
+        active: menuclosed,
+        'mt-4': true,
+      }"
       id="content"
     >
-      <!-- Toggle button -->
-      <div class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12">
-          <button
-            @click="togglemenu"
-            id="sidebarCollapse"
-            type="button"
-            class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
-          >
-            <i class="fa fa-bars mr-2"></i
-            ><small class="text-uppercase font-weight-bold">Toggle</small>
-          </button>
+      <button
+        @click="togglemenu"
+        id="sidebarCollapse"
+        type="button"
+        class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+      >
+        <i class="fa fa-bars mr-2"></i
+        ><small class="text-uppercase font-weight-bold">Toggle</small>
+      </button>
 
-          <b-table striped hover :items="items" :fields="fields"></b-table>
-        </div>
+      <CountBar />
+
+      <div class="row pt-4" id="tbls">
         <div class="col-lg-6 col-md-12 col-sm-12">
-          <b-card header-tag="header" footer-tag="footer" title="Title">
+          <b-card
+            header-tag="header"
+            footer-tag="footer"
+            header="sss"
+            body-class="p-0"
+          >
+            <b-table striped hover :items="items" :fields="fields"></b-table>
+          </b-card>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <b-card
+            header-tag="header"
+            footer-tag="footer"
+            body-class="p-2"
+            header="Book"
+          >
             <b-card-text>Header and footers using props.</b-card-text>
             <b-button href="#" variant="primary">Go somewhere</b-button>
           </b-card>
         </div>
       </div>
+
+      <!--dummy-->
+      <div class="row pt-4" id="tbls">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <b-card
+            header-tag="header"
+            footer-tag="footer"
+            header="BAR CHART"
+            body-class="p-0"
+          >
+            <Barchart
+              :data="barChartData"
+              :options="barChartOptions"
+              :height="300"
+            />
+          </b-card>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <b-card
+            header-tag="header"
+            footer-tag="footer"
+            body-class="p-2"
+            header="PIE CHART"
+          >
+            <Doughnutchart
+              :data="pieChart.chartData"
+              :options="pieChart.chartOptions"
+              :height="300"
+            />
+          </b-card>
+        </div>
+      </div>
+      <!--dummy-->
     </div>
   </div>
 </template>
@@ -114,6 +167,24 @@ export default {
   data() {
     return {
       menuclosed: false,
+
+      pieChart: {
+        chartOptions: {
+          hoverBorderWidth: 20,
+        },
+        chartData: {
+          hoverBackgroundColor: "red",
+          hoverBorderWidth: 10,
+          labels: ["Green", "Red", "Blue"],
+          datasets: [
+            {
+              label: "Data One",
+              backgroundColor: ["#41B883", "#E46651", "#00D8FF"],
+              data: [1, 10, 5],
+            },
+          ],
+        },
+      },
 
       items: [
         { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
@@ -130,6 +201,67 @@ export default {
         "last_name",
         "age",
       ],
+
+      barChartData: {
+        labels: [
+          "2019-06",
+          "2019-07",
+          "2019-08",
+          "2019-09",
+          "2019-10",
+          "2019-11",
+          "2019-12",
+          "2020-01",
+          "2020-02",
+          "2020-03",
+        ],
+        datasets: [
+          {
+            label: "Visualizaciones",
+            data: [2, 1, 16, 3, 4, 5, 0, 0, 4, 12, 2],
+            backgroundColor: "rgba(20, 255, 0, 0.3)",
+            borderColor: "rgba(100, 255, 0, 1)",
+            borderWidth: 2,
+          },
+        ],
+      },
+      barChartOptions: {
+        responsive: true,
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: "Google analytics data",
+          fontSize: 24,
+          fontColor: "#6b7280",
+        },
+        tooltips: {
+          backgroundColor: "#17BF62",
+        },
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: true,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                max: 7,
+                min: 0,
+                stepSize: 1,
+              },
+              gridLines: {
+                display: true,
+              },
+            },
+          ],
+        },
+      },
     };
   },
   methods: {
@@ -141,12 +273,15 @@ export default {
 </script>
 
 <style>
+#tbls .card-body {
+  min-height: 300px;
+}
 .vertical-nav {
   min-width: 17rem;
   width: 17rem;
   height: 100vh;
   position: fixed;
-  top: 57px;
+  top: 55px;
   left: 0;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;

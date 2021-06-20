@@ -12,6 +12,8 @@
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.9.1",
+    "chart.js": "2.9.4",
+    "vue-chartjs": "3.5.1",
     "nuxt": "^2.15.3"
   },
   "devDependencies": {
