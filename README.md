@@ -17,4 +17,12 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+This a very basic NUXTJS multi purpose template.
+
+**INCLUDED LIBRARIES**
+
+* Vue-chart
+* Bootstrap
+* AXIOS
+* Vue-validate
+
