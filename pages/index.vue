@@ -4,12 +4,13 @@
     <div
       :class="{
         'vertical-nav': true,
-        'bg-white': true,
+        'bg-white': false,
         active: menuclosed,
+        'bg-color': true
       }"
       id="sidebar"
     >
-      <div class="py-4 px-3 mb-4 bg-light">
+      <div class="py-4 px-3 mb-4">
         <div class="media d-flex align-items-center">
           <div class="media-body">
             <h4 class="m-0">Jason Doe</h4>
@@ -22,20 +23,20 @@
         Main
       </p>
 
-      <ul class="nav flex-column bg-white mb-0">
-        <li class="nav-item">
+      <ul class="nav flex-column bg-white mb-0 ">
+        <li class="nav-item" >
           <a href="#" class="nav-link text-dark font-italic bg-light">
-            <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+            <i class="fa fa-th-large mr-3 text-primary fa-fw "></i>
             Home
           </a>
         </li>
         <li class="nav-item">
-          <a href="/ssss" class="nav-link text-dark">
+          <a href="#" class="nav-link text-dark font-italic bg-light">
             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
             About
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="#" class="nav-link text-dark">
             <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
             Services
@@ -46,14 +47,14 @@
             <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
             Gallery
           </a>
-        </li>
+        </li> -->
       </ul>
 
       <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">
         Charts
       </p>
 
-      <ul class="nav flex-column bg-white mb-0">
+      <!-- <ul class="nav flex-column bg-white mb-0">
         <li class="nav-item">
           <a href="#" class="nav-link text-dark font-italic">
             <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
@@ -71,14 +72,14 @@
             <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
             Pie charts
           </a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a href="#" class="nav-link text-dark font-italic">
             <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
             Line charts
           </a>
-        </li>
-      </ul>
+        </li> -->
+      <!-- </ul> -->
     </div>
     <!-- End vertical navbar -->
 
@@ -92,10 +93,12 @@
       }"
       id="content"
     >
-      <CountBar />
+      <!-- <CountBar /> -->
 
-      <div class="row pt-4" id="tbls">
-        <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
+      <!-- <div class="row pt-4" id="tbls"> -->
+        <div>
+        <!-- <div class="col-lg-6 col-md-12 col-sm-12 mb-2"> -->
+          <div>
           <b-card
             header-tag="header"
             footer-tag="footer"
@@ -107,70 +110,24 @@
         </div>
 
         <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
-          <b-card
-            header-tag="header"
-            footer-tag="footer"
-            body-class="p-2 card-fixed"
-            header="Book"
-          >
+          
             <!--dummy-->
-            <b-card>
-              <b-skeleton animation="wave" width="85%"></b-skeleton>
-              <b-skeleton animation="wave" width="55%"></b-skeleton>
-              <b-skeleton animation="wave" width="70%"></b-skeleton>
-            </b-card>
-
-            <h5 class="mt-1"></h5>
-            <b-card>
-              <b-skeleton animation="fade" width="85%"></b-skeleton>
-              <b-skeleton animation="fade" width="55%"></b-skeleton>
-              <b-skeleton animation="fade" width="70%"></b-skeleton>
-            </b-card>
+            
             <!--dummy-->
-            <div class="float-right m-3">
-              <b-button
-                href="#"
-                variant="primary"
-                class="btn btn-light bg-white rounded-pill shadow-sm"
-                ><i class="fa fa-plus"></i
-              ></b-button>
-            </div>
-          </b-card>
+         
         </div>
       </div>
 
       <!--dummy-->
-      <div class="row pt-4" id="tbls">
+      <!-- <div class="row pt-4" id="tbls">
         <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
-          <b-card
-            header-tag="header"
-            footer-tag="footer"
-            header="BAR CHART"
-            body-class="p-0"
-          >
-            <Barchart
-              :data="barChartData"
-              :options="barChartOptions"
-              :height="300"
-            />
-          </b-card>
+          
         </div>
 
         <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
-          <b-card
-            header-tag="header"
-            footer-tag="footer"
-            body-class="p-2"
-            header="PIE CHART"
-          >
-            <Doughnutchart
-              :data="pieChart.chartData"
-              :options="pieChart.chartOptions"
-              :height="300"
-            />
-          </b-card>
+          
         </div>
-      </div>
+      </div> -->
       <!--dummy-->
     </div>
   </div>
@@ -213,8 +170,17 @@ export default {
           label: "Person Name",
           sortable: true,
         },
-        "last_name",
-        "age",
+        {
+          key: "last_name",
+          label: "last_name",
+          sortable: true,
+        },
+        {
+          key: "age",
+          label: "age",
+          sortable: true,
+        },
+        
       ],
 
       barChartData: {
@@ -302,6 +268,7 @@ export default {
   left: 0;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
+  
 }
 
 .page-content {
@@ -346,19 +313,20 @@ export default {
   }
 }
 
+/* màu backgroud của thanh xổ user góc phải trên */
 .navbar .dropdown-menu {
-  background-color: #ffffff !important;
+  background-color: #f7f4f6 !important;
   border-radius: 0px;
   margin-top: 7px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #6d6b6b !important;
+  color: #5a5858 !important;
   font-family: "Open Sans";
 }
 
 .bg-primary {
-  background-color: white !important;
+  background-color: rgb(248, 244, 244) !important;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -373,4 +341,8 @@ export default {
   color: #6d6b6b !important;
   font-family: "Open Sans";
 }
+.bg-color {
+  background-color: aqua;
+}
+
 </style>

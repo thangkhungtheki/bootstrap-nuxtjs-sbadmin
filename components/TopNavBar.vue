@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <b-navbar type="dark" variant="primary" fixed="top">
+      <b-navbar type="dark" variant="primary" fixed="top" class="navbarcolor">
         <b-navbar-brand href="#">
           <button
             @click="togglemenu"
@@ -11,8 +11,8 @@
           >
             <i class="fa fa-bars"></i>
           </button>
-          <img src="https://placekitten.com/g/30/30" alt="Kitten" />
-          Bootstrap Nuxt Minimal Template
+          <img src="/iconcuoi.jpg" alt="Kitten" class="iconheader"/>
+          Bootstrap Nuxt
           <!--<button
             @click="togglemenu"
             id="sidebarCollapse"
@@ -23,16 +23,16 @@
             ><small class="text-uppercase font-weight-bold">Toggle</small>
           </button>-->
         </b-navbar-brand>
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item href="#">Home</b-nav-item>
+        <b-navbar-nav class="ml-auto " >
+          <!-- <b-nav-item href="#">Home</b-nav-item> -->
 
           <!-- Navbar dropdowns -->
-          <b-nav-item-dropdown text="Lang" right>
+          <!-- <b-nav-item-dropdown text="Lang" right>
             <b-dropdown-item href="#">EN</b-dropdown-item>
             <b-dropdown-item href="#">ES</b-dropdown-item>
             <b-dropdown-item href="#">RU</b-dropdown-item>
             <b-dropdown-item href="#">FA</b-dropdown-item>
-          </b-nav-item-dropdown>
+          </b-nav-item-dropdown> -->
 
           <b-nav-item-dropdown text="User" right>
             <b-dropdown-item href="#">Account</b-dropdown-item>
@@ -55,5 +55,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
+.iconheader{
+  width: 30px;
+  height: 30px;
+}
+
+.navbarcolor{
+  background-color: blue;
+}
 </style>
