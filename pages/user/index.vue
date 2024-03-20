@@ -1,56 +1,65 @@
+'
 <template>
   <!-- <b-table :items="items" :fields="fields"></b-table> -->
   <div>
-    <b-card header-tag="header" footer-tag="footer" header="Table"  footer="End Table" >
-      <b-table hover :items="items" :fields="fields"></b-table>
-    </b-card>
+    <b-container class='containerTable'>
+      
+        <b-table-lite hover small caption-top responsive :items="fataa" :fields="fields" />
+
+    
+      
+    
+    </b-container>
   </div>
 </template>
 
 <script>
   export default {
+    async asyncData() {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/users')
+        const fata = await response.json()
+        return {
+          fataa: fata ? fata : []
+        }
+      } catch (error) {
+        return {
+          fataa: []
+        }
+      }
 
+    },
     layout: "areaAdmin",
     data() {
       return {
-        items: [{
-            age: 40,
-            first_name: "Dickerson",
-            last_name: "Macdonald"
-          },
-          {
-            age: 21,
-            first_name: "Larsen",
-            last_name: "Shaw"
-          },
-          {
-            age: 89,
-            first_name: "Geneva",
-            last_name: "Wilson"
-          },
-          {
-            age: 38,
-            first_name: "Jami",
-            last_name: "Carney"
-          },
-        ],
+
 
         fields: [{
-            key: "first_name",
-            label: "Person Name",
+            key: "id",
             sortable: true,
           },
           {
-            key: "last_name",
-            label: "Last name",
+            key: "name",
+            // label: "Last name",
             sortable: true,
           },
           {
-            key: "age",
-            label: "Age",
+            key: "email",
+            // label: "Age",
             sortable: true,
           },
-
+          {
+            key: "phan4",
+            sortable: true,
+          },
+          {
+            key: "phan5",
+            sortable: true,
+          },
+          {
+            key: "phan6",
+            sortable: true,
+          },
         ],
       }
     },
@@ -58,5 +67,7 @@
 </script>
 
 <style>
-
+.containerTable {
+  margin: 0%;
+}
 </style>
