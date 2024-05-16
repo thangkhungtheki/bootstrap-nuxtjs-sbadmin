@@ -36,6 +36,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxtjs/axios'
     
   ],
 
@@ -45,7 +46,9 @@ export default {
 
   server: {
     host: '0.0.0.0',
-    port: 3002
-  }
+    port: 3000
+  },
+
+
 
 }

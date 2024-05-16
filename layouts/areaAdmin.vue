@@ -5,7 +5,7 @@
       :class="{
         'vertical-nav': true,
         'bg-white': false,
-        active: menuclosed,
+         active: menuclosed,
         'bg-color': true
       }"
       id="sidebar"
@@ -107,7 +107,13 @@
          
         </div>
       </div>
-
+      <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
+          
+          <!--dummy-->
+          
+          <!--dummy-->
+       
+      </div>
       <!--dummy-->
       <!-- <div class="row pt-4" id="tbls">
         <div class="col-lg-6 col-md-12 col-sm-12 mb-2">

@@ -8,10 +8,12 @@
     <hr/>
     <b-button variant="success" @click="handletang">TĂNG</b-button>
     <b-button variant="danger" @click="handlegiam">GIẢM</b-button>
+    <b-button variant="outline-primary" @click="getData">CHECK LOG</b-button>
     <hr/>
-    <b-card header-tag="header" footer-tag="footer" header="Table" body-class="p-0 card-fixed">
-      <b-table hover :fields="fields"></b-table>
-    </b-card>
+    <!-- <b-card header-tag="header" footer-tag="footer" header="Bảng dữ liệu" body-class="p-0 card-fixed">
+      
+    </b-card> -->
+    <b-table-lite hover :fields="fields"></b-table-lite>
   </div>
 
 
@@ -23,10 +25,10 @@
 import {mapState, mapActions} from 'vuex'
 export default {
 
-  async asyncData() {
+  async asyncData({ $axios }) {
     try {
-      const response = await fetch('http://127.0.0.1:8000/users')
-      const fata = await response.json()
+      const response =  await $axios.$get('http://127.0.0.1:4000/')
+      console.log(response)
       return {
         fataa: fata ? fata : []
       }
@@ -52,6 +54,14 @@ export default {
     },
     handlegiam(){
       this.except()
+    },
+    async getData(){
+      try {
+        const data = await this.$axios.$get('http://127.0.0.1:4000/')
+        console.log(data)
+      } catch (error) {
+        console.error(error)
+      }
     }
   },
 
@@ -87,7 +97,7 @@ export default {
           label: "nam",
           sortable: true,
         },
-
+        
       ],
     }
   },
