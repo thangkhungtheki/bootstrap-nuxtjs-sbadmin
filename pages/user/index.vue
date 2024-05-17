@@ -5,6 +5,7 @@
 
   <div>
     <h2>Counter: {{ counter }}</h2>
+    <CountBar/>
     <hr/>
     <b-button variant="success" @click="handletang">TĂNG</b-button>
     <b-button variant="danger" @click="handlegiam">GIẢM</b-button>

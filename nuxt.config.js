@@ -14,7 +14,20 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&family=Open+Sans:ital,wght@0,300;0,400;1,300;1,600&display=swap' },
       { rel: 'stylesheet', href: '/css/icons.css',type: 'text/css' }
-    ]
+    ],
+    script: [
+      {
+        src: 'jwplayer.js'
+      },
+      {
+        src: 'https://cdn.jwplayer.com/libraries/hwjB6n5l.js',
+        // async: true,
+      },
+      
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+      }
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -43,7 +56,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
-
+  
   server: {
     host: '0.0.0.0',
     port: 3000
