@@ -49,7 +49,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
     
   ],
 
@@ -62,6 +63,35 @@ export default {
     port: 3000
   },
 
+  // Cấu hình Axios
+  axios: {
+    baseURL: 'http://127.0.0.1:4000', // Base URL của API
+  },
 
-
+  // Cấu hình Auth module
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          // Optional
+          global: true,
+          // Required
+          type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+          // Optional
+          autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/jwt', method: 'post' },
+          logout: false,
+          user: false
+        }
+      }
+    }
+  }
 }
+
+
