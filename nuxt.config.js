@@ -65,7 +65,7 @@ export default {
 
   // Cấu hình Axios
   axios: {
-    baseURL: 'http://127.0.0.1:4000', // Base URL của API
+    // baseURL: 'http://127.0.0.1:4000', // Base URL của API
   },
 
   // Cấu hình Auth module
