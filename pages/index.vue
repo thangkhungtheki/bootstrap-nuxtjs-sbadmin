@@ -136,6 +136,7 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  
   data() {
     return {
       //menuclosed: false,
@@ -252,7 +253,8 @@ export default {
       this.$store.commit("toggle");
     },
   },
-};
+  
+}
 </script>
 
 <style>

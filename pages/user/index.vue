@@ -26,6 +26,7 @@
 import {mapState, mapActions} from 'vuex'
 export default {
 
+
   //  async asyncData({ $axios }) {
   //   try {
   //     const response =  await $axios.$get('http://127.0.0.1:4000/')
@@ -38,23 +39,23 @@ export default {
   //   }
 
   // },
-  asyncData({ $axios }) {
-    return $axios.$get('http://127.0.0.1:4000/')
-      .then(data => {
-        console.log(data);
-        return {
-          // return any data you want to use in your component
-          responseData: data
-        };
-      })
-      .catch(error => {
-        console.error(error);
-        return {
-          // handle error, return some default or empty data if needed
-          responseData: null
-        };
-      });
-  },
+  // asyncData({ $axios }) {
+  //   return $axios.$get('http://127.0.0.1:4000/')
+  //     .then(data => {
+  //       console.log(data);
+  //       return {
+  //         // return any data you want to use in your component
+  //         responseData: data
+  //       };
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //       return {
+  //         // handle error, return some default or empty data if needed
+  //         responseData: null
+  //       };
+  //     });
+  // },
   
   computed: {
     ...mapState({

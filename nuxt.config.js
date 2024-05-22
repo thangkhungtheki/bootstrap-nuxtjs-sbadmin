@@ -64,34 +64,35 @@ export default {
   },
 
   // Cấu hình Axios
-  axios: {
-    // baseURL: 'http://127.0.0.1:4000', // Base URL của API
-  },
+  // axios: {
+  //   baseURL: 'http://127.0.0.1:4000', // Base URL của API
+  // },
 
   // Cấu hình Auth module
-  auth: {
-    strategies: {
-      local: {
-        token: {
-          property: 'token',
-          // Optional
-          global: true,
-          // Required
-          type: 'Bearer'
-        },
-        user: {
-          property: 'user',
-          // Optional
-          autoFetch: true
-        },
-        endpoints: {
-          login: { url: '/jwt', method: 'post' },
-          logout: false,
-          user: false
-        }
-      }
-    }
-  }
+  // auth: {
+  //   strategies: {
+  //     local: {
+  //       token: {
+  //         property: 'token',
+  //         // Optional
+  //         global: true,
+  //         // Required
+  //         type: 'Bearer'
+  //       },
+  //       user: {
+  //         property: 'user',
+  //         // Optional
+  //         autoFetch: false
+  //       },
+  //       endpoints: {
+  //         login: { url: 'http://127.0.0.1:4000/jwt', method: 'post' },
+  //         logout: false,
+  //         user: false
+  //       }
+  //     }
+  //   }
+  // },
+ 
 }
 
 
