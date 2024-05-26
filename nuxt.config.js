@@ -50,48 +50,40 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    // '@nuxtjs/auth-next'
     
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, { isDev , isClient }) {
+      if (isClient && !isDev) {
+        config.optimization.splitChunks.maxSize = 250000
+      }
+    },
+    babel: {
+      compact: true,
+     },
   },
-  
+  configureWebpack:{
+    performance: {
+      hints: false
+    },
+    optimization: {
+      splitChunks: {
+        minSize: 10000,
+        maxSize: 250000,
+      }
+    }
+},
   server: {
     host: '0.0.0.0',
     port: 3000
   },
 
-  // Cấu hình Axios
-  // axios: {
-  //   baseURL: 'http://127.0.0.1:4000', // Base URL của API
-  // },
-
-  // Cấu hình Auth module
-  // auth: {
-  //   strategies: {
-  //     local: {
-  //       token: {
-  //         property: 'token',
-  //         // Optional
-  //         global: true,
-  //         // Required
-  //         type: 'Bearer'
-  //       },
-  //       user: {
-  //         property: 'user',
-  //         // Optional
-  //         autoFetch: false
-  //       },
-  //       endpoints: {
-  //         login: { url: 'http://127.0.0.1:4000/jwt', method: 'post' },
-  //         logout: false,
-  //         user: false
-  //       }
-  //     }
-  //   }
-  // },
+  serverMiddleware: [
+   
+  ]
  
 }
 

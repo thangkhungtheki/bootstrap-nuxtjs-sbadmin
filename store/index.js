@@ -33,12 +33,11 @@ export const mutations = {
     setToken(state, token) {
         state.token = token
     },
-    setUsername(state, username){
-        state.username = username
+    setUser(state, login){
+        state.username = login.username
+        state.password = login.password
     },
-    setPassword(state, password){
-        state.password = password
-    }
+   
 }
 
 export const actions = {
@@ -56,11 +55,10 @@ export const actions = {
         commit('setAuthenticated', false)
         commit('setToken', null)
     },
-    setPassword({ commit }){
-        commit('setPassword', password)
+    ActUser(context, login){
+        context.commit('setUser', login)
+        
     },
-    setUsername({ commit }){
-        commit('setPassword', username)
-    },
+    
 }
 

@@ -24,8 +24,9 @@
 
 <script>
 import {mapState, mapActions} from 'vuex'
-export default {
 
+export default {
+  // middleware: ["auth"],
 
   //  async asyncData({ $axios }) {
   //   try {
@@ -65,7 +66,8 @@ export default {
   methods: {
     ...mapActions({
       add: 'increment',
-      except: 'decrement'
+      except: 'decrement',
+      
     }),
     handletang(){
       this.add()
@@ -73,17 +75,17 @@ export default {
     handlegiam(){
       this.except()
     },
-     getData(){
-      try {
-        const data = this.$axios.$get('http://127.0.0.1:4000/')
-        .then(data=>{
-          console.log(data)
-        })
+    //  getData(){
+    //   try {
+    //     const data = this.$axios.$get('http://127.0.0.1:4000/')
+    //     .then(data=>{
+    //       console.log(data)
+    //     })
         
-      } catch (error) {
-        console.error(error)
-      }
-    }
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // }
   },
 
   layout: "areaAdmin",
