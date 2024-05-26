@@ -1,4 +1,4 @@
-'
+
 <template>
   <!-- <b-table :items="items" :fields="fields"></b-table> -->
  
@@ -75,17 +75,17 @@ export default {
     handlegiam(){
       this.except()
     },
-    //  getData(){
-    //   try {
-    //     const data = this.$axios.$get('http://127.0.0.1:4000/')
-    //     .then(data=>{
-    //       console.log(data)
-    //     })
+     getData(){
+      try {
+        const data = this.$axios.$get('http://127.0.0.1:4000/')
+        .then(data=>{
+          console.log(data)
+        })
         
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // }
+      } catch (error) {
+        console.error(error)
+      }
+    }
   },
 
   layout: "areaAdmin",

@@ -81,6 +81,11 @@ export default {
     port: 3000
   },
 
+  dependencies: {
+
+    "@nuxtjs/axios": "latest"
+  },
+
   serverMiddleware: [
    
   ]
