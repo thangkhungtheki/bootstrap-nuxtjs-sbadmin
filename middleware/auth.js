@@ -1,3 +1,6 @@
-export default function (ctx) {
-    console.log('>>> Đây là middleware', Object.keys(ctx))
+export default function ({ store, redirect }) {
+    // If the user is not authenticated
+    if (!store.state.authenticated) {
+      return redirect('/login')
+    }
 }

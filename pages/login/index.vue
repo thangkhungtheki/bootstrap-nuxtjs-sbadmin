@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   data() {
     return {
@@ -27,12 +28,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      actUser: 'ActUser'
+    }),
      userLogin() {
-      this.$store.commit('setUsername', this.login.username);
-      this.$store.commit('setPassword', this.login.password);
+      this.actUser(this.login)
+      // this.$store.commit('setUsername', this.login.username);
+      // this.$store.commit('setPassword', this.login.password);
       // this.$store.dispatch('setUsername', this.login.username);
       // this.$store.dispatch('setPassword', this.login.password);
-      this.$router.push('/user')
+      this.$router.push('/')
   
     }
   }

@@ -31,10 +31,12 @@ export default {
      userLogin() {
       this.$store.commit('setUsername', this.login.username);
       this.$store.commit('setPassword', this.login.password);
+
+
       // this.$store.dispatch('setUsername', this.login.username);
       // this.$store.dispatch('setPassword', this.login.password);
-      this.$router.push('/user')
-  
+      // this.$router.push('/user')
+      
     //   try {
     //     const response = this.$auth.loginWith('local', {
     //       data: this.login

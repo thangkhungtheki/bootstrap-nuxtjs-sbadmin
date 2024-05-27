@@ -135,12 +135,12 @@
 
 <script>
 import { mapState } from "vuex";
+
 export default {
   
   data() {
     return {
-      //menuclosed: false,
-
+      
       pieChart: {
         chartOptions: {
           hoverBorderWidth: 20,
@@ -246,7 +246,13 @@ export default {
       },
     };
   },
-  computed: mapState(["menuclosed"]),
+  computed: {
+    ...mapState({
+      menuclosed: state => state.menuclosed,
+      username: state => state.username,
+      password: state => state.password
+    })
+  },
   methods: {
     togglemenu() {
       //this.menuclosed = this.menuclosed ? false : true;

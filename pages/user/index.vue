@@ -1,4 +1,4 @@
-'
+
 <template>
   <!-- <b-table :items="items" :fields="fields"></b-table> -->
  
@@ -24,8 +24,9 @@
 
 <script>
 import {mapState, mapActions} from 'vuex'
-export default {
 
+export default {
+  // middleware: ["auth"],
 
    async asyncData({ $axios }) {
     try {
@@ -68,7 +69,8 @@ export default {
   methods: {
     ...mapActions({
       add: 'increment',
-      except: 'decrement'
+      except: 'decrement',
+      
     }),
     handletang(){
       this.add()

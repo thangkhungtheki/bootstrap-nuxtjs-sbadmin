@@ -1,14 +1,13 @@
 
-
 export default async function ({ store, redirect, $axios }) {
   const username = store.state.username;
   const password = store.state.password;
-
+  console.log('>>>middleware: user pass ', store.state )
   try {
     // Gửi request đến server backend để kiểm tra thông tin đăng nhập
     const response = await $axios.post('http://127.0.0.1:4000/jwt', {
-      username,
-      password
+        username: username,
+        password: password
     });
 
     // if (response.status === 200 && response.data.success) {
