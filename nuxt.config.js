@@ -91,13 +91,9 @@ export default {
   //   throttle: 0
   // }
 
-  dependencies: {
-
-    "@nuxtjs/axios": "latest"
-  },
-
   serverMiddleware: [
-   
+    // Đăng ký middleware từ một file
+    { path: '/api', handler: '~/server/api.js' }
   ]
  
 }
