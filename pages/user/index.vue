@@ -27,18 +27,19 @@ import {mapState, mapActions} from 'vuex'
 export default {
 
 
-  //  async asyncData({ $axios }) {
-  //   try {
-  //     const response =  await $axios.$get('http://127.0.0.1:4000/')
-  //     .then(data=>{
-  //       console.log(data)
-  //     })
+   async asyncData({ $axios }) {
+    try {
+      const response =  await $axios.$get('http://127.0.0.1:4000/')
+      .then(data=>{
+        console.log(data)
+      })
       
-  //   } catch (error) {
+    } catch (error) {
       
-  //   }
+    }
 
-  // },
+  },
+
   // asyncData({ $axios }) {
   //   return $axios.$get('http://127.0.0.1:4000/')
   //     .then(data => {
@@ -56,7 +57,9 @@ export default {
   //       };
   //     });
   // },
-  
+   mounted() {
+    
+  },
   computed: {
     ...mapState({
       counter: state => state.counter,

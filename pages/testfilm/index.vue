@@ -27,7 +27,7 @@
 <script>  
     import jwplayer from '~/components/jwplayer.vue'
     export default {
-      layout: 'layout1',
+      layout: 'areaAdmin',
       data() {
         return {
           sotap: "94364",

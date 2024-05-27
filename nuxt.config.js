@@ -32,6 +32,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/static/css/global.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -62,6 +63,15 @@ export default {
     host: '0.0.0.0',
     port: 3000
   },
+
+  loading: '~/components/LoadingBar.vue'
+  
+  // loadingIndicator: {
+  //   name: 'circle',
+  //   color: '#3B8070',
+  //   background: 'white',
+  //   throttle: 0
+  // }
 
   // Cấu hình Axios
   // axios: {
