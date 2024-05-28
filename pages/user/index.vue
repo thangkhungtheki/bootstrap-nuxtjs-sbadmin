@@ -26,7 +26,7 @@
 import {mapState, mapActions} from 'vuex'
 
 export default {
-  // middleware: ["auth"],
+  // middleware: ["checkcontext"],
 
    async asyncData({ $axios }) {
     try {

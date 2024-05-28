@@ -1,14 +1,16 @@
 <template>
   <div>
     <div ref="player"></div>
+    
   </div>
 </template>
   
 <script>
 export default {
+  
   props: {
     options: {
-      type: Object,
+      type: Object, 
       default() {
         return {};
       },
