@@ -5,9 +5,9 @@ export default async function (req, res, next,) {
         username: 'dtan',
         password: 'qeqeqeqe'
         })
-    const data = JSON.stringify(response.data)
+    // const data = JSON.stringify(response.data)
     // req.store.token = data.token,
     
     
-    res.send(JSON.stringify(store))
+    res.end()
   }

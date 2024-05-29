@@ -98,7 +98,7 @@ export default {
   serverMiddleware: [
     // Đăng ký middleware từ một file
     { path: '/api', handler: '~/server/api.js' },
-    '@/server/checkserver.js'
+    // '@/server/checkserver.js'
   ]
  
 }
