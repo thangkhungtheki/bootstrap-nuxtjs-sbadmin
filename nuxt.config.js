@@ -95,13 +95,10 @@ export default {
     height: '20px'
   },
 
-  dependencies: {
-
-    "@nuxtjs/axios": "latest"
-  },
-
   serverMiddleware: [
-   
+    // Đăng ký middleware từ một file
+    { path: '/api', handler: '~/server/api.js' },
+    '@/server/checkserver.js'
   ]
  
 }

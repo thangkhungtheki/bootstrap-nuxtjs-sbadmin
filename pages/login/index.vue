@@ -37,7 +37,7 @@ export default {
       // this.$store.commit('setPassword', this.login.password);
       // this.$store.dispatch('setUsername', this.login.username);
       // this.$store.dispatch('setPassword', this.login.password);
-      this.$router.push('/')
+      this.$router.push('/login/checklogin')
   
     }
   }
