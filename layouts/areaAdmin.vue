@@ -27,14 +27,14 @@
         <li class="nav-item" >
           <p class="nav-link text-dark font-italic bg-light">
             <i class="fa fa-th-large mr-3 text-primary fa-fw "></i>
-            Home
-          </a>
+            <nuxt-link to="/user">USER</nuxt-link>
+          </p>
         </li>
         <li class="nav-item">
           <p class="nav-link text-dark font-italic bg-light">
             <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-            About
-          </a>
+            <nuxt-link to="/testfilm">FILM</nuxt-link>
+          </p>
         </li>
         <!-- <li class="nav-item">
           <a href="#" class="nav-link text-dark">

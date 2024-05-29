@@ -82,7 +82,7 @@ export default {
     port: 3000
   },
 
-  loading: '~/components/LoadingBar.vue',
+  // loading: '~/components/LoadingBar.vue',
   
   // loadingIndicator: {
   //   name: 'circle',
@@ -90,6 +90,10 @@ export default {
   //   background: 'white',
   //   throttle: 0
   // }
+  loading: {
+    color: 'aqua',
+    height: '20px'
+  },
 
   dependencies: {
 

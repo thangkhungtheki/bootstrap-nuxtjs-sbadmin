@@ -1,13 +1,14 @@
 <template>
 <div>
   <div v-if="loading" class="loading-page">
-    <p>Loading...</p>
+    <p>LOADING ...</p>
   </div>
 </div>
 </template>
 
 <script>
   export default {
+    layout: "areaAdmin",
     data: () => ({
       loading: false
     }),
@@ -23,7 +24,7 @@
   
 </script>
 
-<style scoped>
+<style>
     .loading-page {
     position: fixed;
     top: 0;
