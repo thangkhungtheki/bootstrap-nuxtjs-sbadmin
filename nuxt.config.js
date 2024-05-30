@@ -17,7 +17,7 @@ export default {
     ],
     script: [
       {
-        src: 'jwplayer.js'
+        src: '/jwplayer.js'
       },
       {
         src: 'https://cdn.jwplayer.com/libraries/hwjB6n5l.js',
@@ -78,7 +78,7 @@ export default {
     }
 },
   server: {
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     port: 3000
   },
 
@@ -98,6 +98,8 @@ export default {
   serverMiddleware: [
     // Đăng ký middleware từ một file
     { path: '/api', handler: '~/server/api.js' },
+    { path: '/film/api', handler: '~/server/fetch_m3u8.js' },
+    
     // '@/server/checkserver.js'
   ]
  

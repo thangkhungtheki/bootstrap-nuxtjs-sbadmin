@@ -28,7 +28,7 @@
 <script>
   import jwplayer from '~/components/jwplayer.vue'
   export default {
-    
+    // servermiddleware: ['~/server/fetch_m3u8.js'],
     layout: 'areaAdmin',
     data() {
       return {
@@ -53,9 +53,11 @@
 
       async fetchM3U8URL(url) {
         try {
-          const response = await axios.get(url);
+          const response = await this.$axios.get(url,{
+            params: { idunique:this.sotap, idfilm: this.idfilm }
+          });
           const m3u8URL = response.data;
-          //console.log(url)
+          //console.log(url) 
 
           return m3u8URL;
         } catch (error) {
@@ -82,14 +84,16 @@
 
         }
       },
-      handleButtonClick() {
+      async handleButtonClick() {
 
         // Xử lý sự kiện khi nút được nhấn
-
+      
         //alert("Số tập: " + this.sotap + " & idfilm: " + this.idfilm);
-        let url = '//' + '127.0.0.1:3000' + '/g?idunique=' + this.sotap + '&idfilm=' + this.idfilm
+        // let url = '//' + '127.0.0.1:4000' + '/g?idunique=' + this.sotap + '&idfilm=' + this.idfilm
         // await this.changeVideoSource(url)
-        this.yourVideoSource = url + '/file.m3u8'
+        
+        // let m3u8 = await this.$axios.get('http://127.0.0.1:3000/film/api')
+        await this.changeVideoSource('/film/api')
         this.jwoptions = {
           //file: "pngs/test.m3u8",
           //heigh: 360,
