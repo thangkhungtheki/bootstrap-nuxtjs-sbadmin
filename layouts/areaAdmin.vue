@@ -133,7 +133,7 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  
+  middleware: ['mdlayout'],
   data() {
     return {
       //menuclosed: false,

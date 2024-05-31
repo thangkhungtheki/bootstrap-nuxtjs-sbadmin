@@ -1,3 +1,5 @@
+import middware from "./middleware/middware"
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -99,10 +101,16 @@ export default {
     // Đăng ký middleware từ một file
     { path: '/api', handler: '~/server/api.js' },
     { path: '/film/api', handler: '~/server/fetch_m3u8.js' },
-    
+    { path: '/express', handler: '~/server/express' },
     // '@/server/checkserver.js'
-  ]
- 
+  ],
+
+  
+  router: {
+    middleware: ["route","mdGlobal"]
+  },
+
+  
 }
 
 
