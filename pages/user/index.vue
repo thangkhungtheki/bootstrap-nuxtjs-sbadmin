@@ -4,12 +4,15 @@
  
 
   <div>
+    <inputcomponent></inputcomponent>
     <h2>Counter: {{ counter }}</h2>
     <CountBar/>
     <hr/>
     <b-button variant="success" @click="handletang">TĂNG</b-button>
     <b-button variant="danger" @click="handlegiam">GIẢM</b-button>
     <b-button variant="outline-primary" @click="getData">CHECK LOG</b-button>
+    <b-button v-b-modal.modal-input variant="dark" >MODAL</b-button>
+    <!-- <inputcomponent></inputcomponent> -->
     <hr/>
     <!-- <b-card header-tag="header" footer-tag="footer" header="Bảng dữ liệu" body-class="p-0 card-fixed">
       
@@ -24,8 +27,11 @@
 
 <script>
 import {mapState, mapActions} from 'vuex'
-
+import inputcomponent from '~/components/modal/input.vue'
 export default {
+  components: {
+    inputcomponent
+  },
   // middleware: ["checkcontext"],
 
   //  async asyncData({ $axios }) {
@@ -88,7 +94,8 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    }
+    },
+    
   },
 
   layout: "areaAdmin",
