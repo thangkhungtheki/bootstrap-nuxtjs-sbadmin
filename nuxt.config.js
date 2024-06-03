@@ -18,6 +18,9 @@ export default {
       { rel: 'stylesheet', href: '/css/icons.css',type: 'text/css' }
     ],
     script: [
+       {
+        src: '/pako.min.js'
+      },
       {
         src: '/jwplayer.js'
       },
@@ -107,7 +110,7 @@ export default {
 
   
   router: {
-    middleware: ["route","mdGlobal"]
+    middleware: ["route"]
   },
 
   

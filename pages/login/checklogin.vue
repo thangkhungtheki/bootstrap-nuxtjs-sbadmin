@@ -8,13 +8,19 @@ export default {
         const username = store.state.username;
         const password = store.state.password;
     try {
-      const response =  await $axios.$post('http://127.0.0.1:4000/jwt',{
+      const response =  await $axios.$post('http://127.0.0.1:3000/express/dangnhap',{
         username: username,
         password: password
       })
       .then(data=>{
-        console.log(data)
-        redirect('/user')
+        if(!data.loi){
+           console.log(data)
+            redirect('/user')
+        }else{
+            console.log('sai pass')
+            redirect('/login')
+        }
+       
       })
       
     } catch (error) {
