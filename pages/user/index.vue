@@ -12,6 +12,7 @@
     <b-button variant="danger" @click="handlegiam">GIẢM</b-button>
     <b-button variant="outline-primary" @click="getData">CHECK LOG</b-button>
     <b-button v-b-modal.modal-input variant="dark" >MODAL</b-button>
+    <b-button variant="info" @click="emitserver">SOCKETIO</b-button>
     <!-- <inputcomponent></inputcomponent> -->
     <hr/>
     <!-- <b-card header-tag="header" footer-tag="footer" header="Bảng dữ liệu" body-class="p-0 card-fixed">
@@ -28,7 +29,11 @@
 <script>
 import {mapState, mapActions} from 'vuex'
 import inputcomponent from '~/components/modal/input.vue'
+import socket from '~/plugins/socket.js'
 export default {
+  beforeMount () {
+    socket.on('User connected', this.printMsg)
+  },
   components: {
     inputcomponent
   },
@@ -84,7 +89,7 @@ export default {
     handlegiam(){
       this.except()
     },
-     getData(){
+    getData(){
       try {
         const data = this.$axios.$get('http://127.0.0.1:4000/')
         .then(data=>{
@@ -95,7 +100,13 @@ export default {
         console.error(error)
       }
     },
-    
+    printMsg (msg) {
+      console.log('Socket-client on: ', msg)
+    },
+    emitserver() {
+      socket.emit('chat','hello server')
+      console.log('Client emit chat on server')
+    }
   },
 
   layout: "areaAdmin",
@@ -132,6 +143,7 @@ export default {
         },
         
       ],
+      
     }
   },
 }

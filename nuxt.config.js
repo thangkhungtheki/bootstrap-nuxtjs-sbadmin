@@ -1,4 +1,4 @@
-import middware from "./middleware/middware"
+require('dotenv').config()
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -42,7 +42,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-   '~/plugins/socket.js'
+  
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -57,6 +57,8 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    
     // '@nuxtjs/auth-next'
     
   ],
@@ -84,7 +86,7 @@ export default {
     }
 },
   server: {
-    host: '127.0.0.1',
+    host: "0.0.0.0",
     port: 3000
   },
 
@@ -105,7 +107,7 @@ export default {
     // Đăng ký middleware từ một file
     { path: '/api', handler: '~/server/api.js' },
     { path: '/film/api', handler: '~/server/fetch_m3u8.js' },
-    { path: '/express', handler: '~/server/express' },
+    { path: '/express', handler: '~/server/express.js' },
     // '@/server/checkserver.js'
   ],
 
@@ -114,7 +116,10 @@ export default {
     middleware: ["route"]
   },
 
-  
+  env: {
+    BASE_URL : process.env.BASE_URL,
+    BACKEND_URL : process.env.BACKEND_URL || 'http://127.0.0.1:4000'
+  }
 }
 
 
