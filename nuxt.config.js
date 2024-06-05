@@ -86,7 +86,7 @@ export default {
     }
 },
   server: {
-    host: "0.0.0.0",
+    host: '0.0.0.0',
     port: 3000
   },
 
@@ -117,7 +117,7 @@ export default {
   },
 
   env: {
-    BASE_URL : process.env.BASE_URL,
+    BASE_URL : process.env.BASE_URL || 'http://127.0.0.1:3000',
     BACKEND_URL : process.env.BACKEND_URL || 'http://127.0.0.1:4000'
   }
 }
