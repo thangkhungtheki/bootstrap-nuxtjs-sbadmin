@@ -10,27 +10,15 @@
       </ul>
     </div> -->
 
-    <b-modal
-      id="modal-input"
-      ref="modal"
-      title="Submit Your Name"
-      @show="resetModal"
-      @hidden="resetModal"
-      @ok="handleOk"
-    >
+    <b-modal id="modal-input" ref="modal" title="Submit Your Name" @show="resetModal" @hidden="resetModal" @ok="handleOk">
       <form ref="form" @submit.stop.prevent="handleSubmit">
-        <b-form-group
-          label="Name"
-          label-for="name-input"
-          invalid-feedback="Name is required"
-          :state="nameState"
-        >
-          <b-form-input
-            id="name-input"
-            v-model="name"
-            :state="nameState"
-            required
-          ></b-form-input>
+
+        <b-form-group label="Name" label-for="name-input" invalid-feedback="Name is required" :state="nameState">
+          <b-form-input id="name-input" v-model="name" :state="nameState" required></b-form-input>
+        </b-form-group>
+
+        <b-form-group label="Age" invalid-feedback="Age is required" :state="nameState">
+          <b-form-input id="age-input" type="number" required></b-form-input>
         </b-form-group>
       </form>
     </b-modal>
@@ -61,6 +49,7 @@
         bvModalEvent.preventDefault()
         // Trigger submit handler
         this.handleSubmit()
+        console.log('nhan nut ok')
       },
       handleSubmit() {
         // Exit when the form isn't valid
@@ -68,8 +57,9 @@
           return
         }
         // Push the name to submitted names
-        this.submittedNames.push(this.name)
+        // this.submittedNames.push(this.name)
         // Hide the modal manually
+        console.log('submit name: ', this.name)
         this.$nextTick(() => {
           this.$bvModal.hide('modal-prevent-closing')
         })

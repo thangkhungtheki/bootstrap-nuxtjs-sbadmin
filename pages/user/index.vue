@@ -4,7 +4,8 @@
  
 
   <div>
-    <inputcomponent></inputcomponent>
+    <!-- component modal của v-b-modal.modal-input -->
+    <inputcomponent></inputcomponent> 
     <h2>Counter: {{ counter }}</h2>
     <CountBar/>
     <hr/>
