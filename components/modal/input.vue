@@ -13,12 +13,12 @@
     <b-modal id="modal-input" ref="modal" title="Submit Your Name" @show="resetModal" @hidden="resetModal" @ok="handleOk">
       <form ref="form" @submit.stop.prevent="handleSubmit">
 
-        <b-form-group label="Name" label-for="name-input" invalid-feedback="Name is required" :state="nameState">
+        <b-form-group label="Name" label-for="name-input" invalid-feedback="Name is required" >
           <b-form-input id="name-input" v-model="name" :state="nameState" required></b-form-input>
         </b-form-group>
 
-        <b-form-group label="Age" invalid-feedback="Age is required" :state="nameState">
-          <b-form-input id="age-input" type="number" required></b-form-input>
+        <b-form-group label="Age" invalid-feedback="Age is required">
+          <b-form-input id="age-input" v-model="age" :state="ageState" required></b-form-input>
         </b-form-group>
       </form>
     </b-modal>
@@ -30,19 +30,35 @@
     data() {
       return {
         name: '',
-        nameState: null,
-        submittedNames: []
+        // nameState: null,
+        // submittedNames: [],
+        age: '',
+        // ageState: null
+      }
+    },
+    computed: {
+      nameState() {
+        
+        return this.name.length > 2 ? true : false
+      },
+      ageState(){
+        return this.age.length > 2 ? true : false
       }
     },
     methods: {
-      checkFormValidity() {
-        const valid = this.$refs.form.checkValidity()
-        this.nameState = valid
-        return valid
-      },
+      // checkFormValidity() {
+      //   const valid = this.$refs.form.checkValidity()
+      //   this.nameState = valid
+      //   this.ageState = valid
+      //   console.log('>>>checkFormValidity: ',valid)
+      //   return valid
+      // },
       resetModal() {
         this.name = ''
-        this.nameState = null
+        this.age = '' 
+        // this.nameState = null
+        // this.ageState = null
+        
       },
       handleOk(bvModalEvent) {
         // Prevent modal from closing
@@ -53,13 +69,14 @@
       },
       handleSubmit() {
         // Exit when the form isn't valid
-        if (!this.checkFormValidity()) {
-          return
-        }
+        // if (!this.checkFormValidity()) {
+        //   return
+        // }
         // Push the name to submitted names
         // this.submittedNames.push(this.name)
         // Hide the modal manually
         console.log('submit name: ', this.name)
+        console.log('submit age: ', this.age)
         this.$nextTick(() => {
           this.$bvModal.hide('modal-prevent-closing')
         })
