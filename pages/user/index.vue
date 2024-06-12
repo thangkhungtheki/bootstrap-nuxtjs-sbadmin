@@ -7,6 +7,8 @@
     <!-- component modal của v-b-modal.modal-input -->
     <inputcomponent></inputcomponent> 
     <h2>Counter: {{ counter }}</h2>
+    <h2>StateCouter : {{ stateCouter }} </h2>
+    <b-button variant="outline-primary" @click="additem">ADD ITEM</b-button>
     <CountBar/>
     <hr/>
     <b-button variant="success" @click="handletang">TĂNG</b-button>
@@ -76,13 +78,18 @@ export default {
   computed: {
     ...mapState({
       counter: state => state.counter,
+      stateCouter: state => state.device.couterstate
     })
+  },
+  created(){
+    // send a request to get result, and assign the value to a, b, c here
+    
   },
   methods: {
     ...mapActions({
       add: 'increment',
       except: 'decrement',
-      
+      'tanglen': 'device/tanglen'
     }),
     handletang(){
       this.add()
@@ -107,6 +114,9 @@ export default {
     emitserver() {
       socket.emit('chat','hello server')
       console.log('Client emit chat on server')
+    },
+    additem(){
+      this.tanglen('item 2')
     }
   },
 

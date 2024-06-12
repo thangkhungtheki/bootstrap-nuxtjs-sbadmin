@@ -18,7 +18,7 @@
         </b-form-group>
 
         <b-form-group label="Age" invalid-feedback="Age is required">
-          <b-form-input id="age-input" v-model="age" :state="ageState" required></b-form-input>
+          <b-form-input id="age-input" v-model="age"  required></b-form-input>
         </b-form-group>
       </form>
     </b-modal>
@@ -30,33 +30,32 @@
     data() {
       return {
         name: '',
-        // nameState: null,
+        nameState: null,
         // submittedNames: [],
         age: '',
         // ageState: null
       }
     },
-    computed: {
-      nameState() {
-        
-        return this.name.length > 2 ? true : false
-      },
-      ageState(){
-        return this.age.length > 2 ? true : false
-      }
-    },
+    // computed: {
+    //   nameState() {
+    //     return this.name.length > 2 ? true : false
+    //   },
+    //   ageState(){
+    //     return this.age.length > 2 ? true : false
+    //   }
+    // },
     methods: {
-      // checkFormValidity() {
-      //   const valid = this.$refs.form.checkValidity()
-      //   this.nameState = valid
-      //   this.ageState = valid
-      //   console.log('>>>checkFormValidity: ',valid)
-      //   return valid
-      // },
+      checkFormValidity() {
+        const valid = this.$refs.form.checkValidity()
+        this.nameState = valid
+        // this.ageState = valid
+        console.log('>>>checkFormValidity: ',valid)
+        return valid
+      },
       resetModal() {
         this.name = ''
         this.age = '' 
-        // this.nameState = null
+        this.nameState = null
         // this.ageState = null
         
       },
@@ -69,9 +68,9 @@
       },
       handleSubmit() {
         // Exit when the form isn't valid
-        // if (!this.checkFormValidity()) {
-        //   return
-        // }
+        if (!this.checkFormValidity()) {
+          return
+        }
         // Push the name to submitted names
         // this.submittedNames.push(this.name)
         // Hide the modal manually

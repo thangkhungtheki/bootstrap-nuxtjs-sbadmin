@@ -1,3 +1,5 @@
+import middware from './middleware/middware'
+
 require('dotenv').config()
 
 export default {
@@ -58,7 +60,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    
+    ['cookie-universal-nuxt', { alias: 'cookiz' }]
     // '@nuxtjs/auth-next'
     
   ],
@@ -113,7 +115,8 @@ export default {
 
   
   router: {
-    middleware: ["route"]
+    // middleware: ["route"]
+    middware: ["cookie_router_middeware"]
   },
 
   env: {

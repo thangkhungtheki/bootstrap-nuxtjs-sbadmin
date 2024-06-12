@@ -27,6 +27,9 @@ export default {
       }
     }
   },
+  created(){
+
+  },
   methods: {
     ...mapActions({
       actUser: 'ActUser'

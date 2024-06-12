@@ -14,8 +14,8 @@ app.get('/getJSON', (req, res, next) => {
   let b  = req.query.pass
   // console.log('[Server Middleware params query] ',a)
   // console.log('[Server Middleware params query] ',b)
-  res.send('test middleware express')
-  next()
+  return res.send('test middleware express')
+  
 })
 app.post('/dangnhap', async(req, res, next) => {
   console.log('[Server Middleware express] >>> đăng nhập')
@@ -28,17 +28,17 @@ app.post('/dangnhap', async(req, res, next) => {
   })
   if(result.data){
     console.log(result.data)
-    res.json(result.data)
+    return res.json(result.data)
   }else{
     
   }
   
   } catch (error) {
-    res.json({
+    return res.json({
       loi: 401
     })
   }
-  next()
+  
   
 })
 module.exports = app

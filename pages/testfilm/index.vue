@@ -30,6 +30,7 @@
   export default {
     // servermiddleware: ['~/server/fetch_m3u8.js'],
     layout: 'areaAdmin',
+    middleware: 'auth',
     data() {
       return {
         sotap: "94364",

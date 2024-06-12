@@ -14,12 +14,13 @@
     "core-js": "^3.9.1",
     "chart.js": "2.9.4",
     "vue-chartjs": "3.5.1",
-    "nuxt": "^2.15.3",
+    "nuxt": "^2.17.3",
     "express": "4.19.2",
     "@nuxtjs/axios": "5.13.6",
     "socket.io-client" : "4.7.5",
-    "@nuxtjs/dotenv" : "1.4.2"
-   
+    "@nuxtjs/dotenv" : "1.4.2",
+    "cookie-universal-nuxt": "2.2.2"
+    
   },
   "devDependencies": {
     "node-sass": "^6.0.0",
@@ -28,6 +29,7 @@
   "resolutions": {
     "vue-loader": "15.10.0",
     "vue": "2.7.3",
-    "vue-server-renderer": "2.7.3"
+    "vue-server-renderer": "2.7.3",
+    "vue-template-compiler": "2.7.3"
 }
 }
