@@ -33,9 +33,9 @@ export const mutations = {
     setToken(state, token) {
         state.token = token
     },
-    setUser(state, login){
-        state.username = login.username
-        state.password = login.password
+    setUser(state, xlogin){
+        state.username = xlogin.username
+        state.password = xlogin.password
     },
    
 }

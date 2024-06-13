@@ -44,7 +44,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-  
+     '@/plugins/initAuth'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -60,7 +60,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    ['cookie-universal-nuxt', { alias: 'cookiz' }]
+    // ['cookie-universal-nuxt', { alias: 'cookiz' }]
     // '@nuxtjs/auth-next'
     
   ],
@@ -116,7 +116,7 @@ export default {
   
   router: {
     // middleware: ["route"]
-    middware: ["cookie_router_middeware"]
+    // middeware: ['initAuth']
   },
 
   env: {

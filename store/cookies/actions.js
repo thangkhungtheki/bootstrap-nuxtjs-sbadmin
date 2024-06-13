@@ -1,23 +1,19 @@
-export default {
-    nuxtServerInit({ commit }, { req }) {
-    const token = this.$cookies.get('auth_token');
+const Cookies = require('js-cookie') 
 
-    if (token) {
-      commit('SET_TOKEN', token);
-    }
+export default {
+  onlogin({ commit }, token) {
+    commit('SET_TOKEN', token)
+    Cookies.set('token', token, { expires: 7 }) // expires in 7 days
   },
-  login({ commit }, token) {
-    this.$cookies.set('auth_token', token, {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7 // 7 ngày
-    });
-    commit('SET_TOKEN', token);
+  initializeAuth({ commit }) {
+    const token = localStorage.getItem('token')
+    if (token) {
+      commit('SET_TOKEN', token)
+    }
   },
   logout({ commit }) {
     this.$cookies.remove('auth_token');
     commit('SET_TOKEN', null);
   },
-  onlogin({commit}, token){
-    commit("SET_TOKEN", token)
-  }
+  
 }

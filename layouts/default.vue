@@ -10,3 +10,8 @@ body {
   font-size: 14px;
 }
 </style>
+<script>
+export default {
+  name: "Default"
+}
+</script>
