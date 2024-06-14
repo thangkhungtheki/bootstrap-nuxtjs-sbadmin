@@ -15,5 +15,7 @@ export default {
     this.$cookies.remove('auth_token');
     commit('SET_TOKEN', null);
   },
-  
+  setBeforcePath({commit}, path){
+    commit('SET_BEFORCE_PATH', path)
+  }
 }

@@ -12,13 +12,16 @@
       <div>
         <button type="submit">Submit</button>
       </div>
+      <div>
+        {{ token }}
+      </div>
     </form>
   </div>
 </template>
 
 <script>
 import {mapActions, mapState} from 'vuex'
-import { state } from '~/store'
+
 export default {
   data() {
     return {
@@ -29,32 +32,42 @@ export default {
     }
   },
   created(){
+    console.log('>>>check lại state và navigato')
+    // console.log(this.$store.state.cookies.token)
+    
+    if(this.token){
 
+    }
   },
   computed: {
     ...mapState({
-      token: state => state.cookie.token,
+      token: state => state.cookies.token,
       stateCouter: state => state.device.couterstate,
-      
-      
   }),
+
   },
   methods: {
     ...mapActions({
       actUser: 'ActUser',
       'login': 'cookies/onlogin'
   }),
-    async userLogin() {
+   userLogin() {
     this.actUser(this.xlogin)
     try {
-        const response = await this.$axios.post('http://127.0.0.1:3000/express/dangnhap', {
+        const response = this.$axios.post('http://127.0.0.1:3000/express/dangnhap', {
             username: this.xlogin.username,
             password: this.xlogin.password
         })
+        .then(data => {
+          if(data.data.token){
+            this.login(data.data.token)
+            this.$router.push('/user')
+            console.log(data)
+          }else{
+            this.$router.push('/login')
+          }
+        })
         
-        this.login(response.data.token)
-        this.$router.push('/user');
-        console.log(response.data)
         
         
 

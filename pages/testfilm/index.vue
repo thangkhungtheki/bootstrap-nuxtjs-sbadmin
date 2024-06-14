@@ -30,7 +30,7 @@
   export default {
     // servermiddleware: ['~/server/fetch_m3u8.js'],
     layout: 'areaAdmin',
-    // middleware: 'auth', // cái này chạy trước plugin ở nuxt.config.js
+    middleware: 'auth', // cái này chạy trước plugin ở nuxt.config.js
     data() {
       return {
         sotap: "94364",

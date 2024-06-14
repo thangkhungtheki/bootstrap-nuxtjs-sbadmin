@@ -3,7 +3,7 @@ const app = require('express')()
 const axios = require('axios')
 
 app.use(bodyParser.json())
-app.use(function(req, res, next) {
+app.use(function(req, res) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   next()
@@ -22,7 +22,7 @@ app.post('/dangnhap', async(req, res, next) => {
   let id = req.body.username
   let pass  = req.body.password
   try {
-     const result = await axios.post('http://127.0.0.1:4000/jwt',{
+    const result = await axios.post('http://127.0.0.1:4000/jwt',{
     username: id,
     password: pass
   })
@@ -30,7 +30,7 @@ app.post('/dangnhap', async(req, res, next) => {
     console.log(result.data)
     return res.json(result.data)
   }else{
-    
+    return res.json({loi: 401})
   }
   
   } catch (error) {
