@@ -23,6 +23,7 @@
 import {mapActions, mapState} from 'vuex'
 
 export default {
+  
   data() {
     return {
       xlogin: {
@@ -32,12 +33,7 @@ export default {
     }
   },
   created(){
-    console.log('>>>check lại state và navigato')
-    // console.log(this.$store.state.cookies.token)
     
-    if(this.token){
-
-    }
   },
   computed: {
     ...mapState({
@@ -54,13 +50,13 @@ export default {
    userLogin() {
     this.actUser(this.xlogin)
     try {
-        const response = this.$axios.post('http://127.0.0.1:3000/express/dangnhap', {
+        const response = this.$axios.$post('http://127.0.0.1:3000/express/dangnhap', {
             username: this.xlogin.username,
             password: this.xlogin.password
         })
         .then(data => {
-          if(data.data.token){
-            this.login(data.data.token)
+          if(data.token !== null){
+            this.login(data.token)
             this.$router.push('/user')
             console.log(data)
           }else{

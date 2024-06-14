@@ -3,12 +3,12 @@ const app = require('express')()
 const axios = require('axios')
 
 app.use(bodyParser.json())
-app.use(function(req, res) {
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   next()
 })
-app.get('/getJSON', (req, res, next) => {
+app.get('/getJSON', (req, res) => {
   console.log('[Server Middleware express]')
   let a = req.query.id
   let b  = req.query.pass
@@ -17,7 +17,7 @@ app.get('/getJSON', (req, res, next) => {
   return res.send('test middleware express')
   
 })
-app.post('/dangnhap', async(req, res, next) => {
+app.post('/dangnhap', async(req, res) => {
   console.log('[Server Middleware express] >>> đăng nhập')
   let id = req.body.username
   let pass  = req.body.password
@@ -30,13 +30,11 @@ app.post('/dangnhap', async(req, res, next) => {
     console.log(result.data)
     return res.json(result.data)
   }else{
-    return res.json({loi: 401})
+    return res.json({token: null})
   }
   
   } catch (error) {
-    return res.json({
-      loi: 401
-    })
+    return res.json({token: null})
   }
   
   
