@@ -111,6 +111,7 @@ export default {
     { path: '/api', handler: '~/server/api.js' },
     { path: '/film/api', handler: '~/server/fetch_m3u8.js' },
     { path: '/express', handler: '~/server/express.js' },
+     '~/server/Globalvarible.js'
     // '@/server/checkserver.js'
   ],
 

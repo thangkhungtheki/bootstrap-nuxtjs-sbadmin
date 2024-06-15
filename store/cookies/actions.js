@@ -4,6 +4,7 @@ export default {
   onlogin({ commit }, token) {
     commit('SET_TOKEN', token)
     Cookies.set('token', token, { expires: 7 }) // expires in 7 days
+   
   },
   initializeAuth({ commit }) {
     const token = localStorage.getItem('token')

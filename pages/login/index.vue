@@ -23,7 +23,7 @@
 import {mapActions, mapState} from 'vuex'
 
 export default {
-  
+  middleware: 'checkreq',
   data() {
     return {
       xlogin: {
@@ -32,14 +32,12 @@ export default {
       }
     }
   },
-  created(){
-    
-  },
+  
   computed: {
     ...mapState({
       token: state => state.cookies.token,
       stateCouter: state => state.device.couterstate,
-  }),
+    }),
 
   },
   methods: {
@@ -47,36 +45,37 @@ export default {
       actUser: 'ActUser',
       'login': 'cookies/onlogin'
   }),
-   userLogin() {
-    this.actUser(this.xlogin)
-    try {
-        const response = this.$axios.$post('http://127.0.0.1:3000/express/dangnhap', {
+    async userLogin() {
+    //this.actUser(this.xlogin)
+   
+        let result  = await this.$axios.post('http://127.0.0.1:3000/express/dangnhap', {
             username: this.xlogin.username,
             password: this.xlogin.password
         })
-        .then(data => {
-          if(data.token !== null){
-            this.login(data.token)
-            this.$router.push('/user')
-            console.log(data)
-          }else{
+        await this.login(result?.data?.token)
+        console.log(result)
+        if(this.token){
+          this.$router.push('/user')
+        }
+        else{
             this.$router.push('/login')
           }
-        })
-        
-        
-        
-
-      } catch (error) {
-        console.log(error)
-        this.$router.push('/login')
-      }
+        // .then(data => {
+        //   if(data.token !== null){
+        //     this.login(data.token)
+        //     this.$router.push('/user')
+        //     console.log(data)
+        //   }else{
+        //     this.$router.push('/login')
+        //   }
+        // })
+  } 
     
     // this.$store.commit('setUsername', this.login.username);
     // this.$store.commit('setPassword', this.login.password);
     // this.$store.dispatch('setUsername', this.login.username);
     // this.$store.dispatch('setPassword', this.login.password);
-    }
+    
   }
 }
 

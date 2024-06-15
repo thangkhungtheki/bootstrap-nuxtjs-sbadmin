@@ -1,12 +1,12 @@
 // 'use client'
 const Cookies = require('js-cookie') 
 
-export default async function ({ store }) {
+export default  function ({ store }) {
   console.log('>>>Middleware initAuth')
-  // if (process.client) {
+  if (process.client) {
     const token = Cookies.get('token',)
     if (token) {
-      await store.commit('cookies/SET_TOKEN', token)
+       store.commit('cookies/SET_TOKEN', token)
     }
-  // }
+  }
 }

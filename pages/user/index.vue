@@ -121,6 +121,7 @@ export default {
   },
 
   layout: "areaAdmin",
+  middleware: "auth",
   data() {
     return {
       items: [
