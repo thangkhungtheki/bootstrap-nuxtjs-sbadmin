@@ -1,11 +1,9 @@
 // này thường chạy khi load trang là ở phía server
 // const Cookies = require('js-cookie') 
-export default async function ({ store, redirect, route, next}) {
-    // req.isAuth = false
+export default async function ({ store, redirect, next}) {
     // If the user is not authenticated
-
-    console.log('>>> middware auth.js')
-    
+    console.log('>>> middware authhome.js')
+    console.log(store.state.cookies.token)
     if ( store.state.cookies.token )   {
       
       // const path = route?.path
@@ -13,11 +11,12 @@ export default async function ({ store, redirect, route, next}) {
       // req.pathBefore = path
       // console.log(path)
       //await store.commit('cookies/SET_BEFORCE_PATH', path)
+      next()
       
-      // req.isAuth = true
-      
-    } else {
+    }else{
         redirect('/home')
     }
+    
+    
   // //  redirect('/login')
 }

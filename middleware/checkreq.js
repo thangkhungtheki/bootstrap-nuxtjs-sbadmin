@@ -1,4 +1,4 @@
-export default function({req}){
+export default function(){
     console.log('>>>Middeware checkreq')
-    console.log(req?.pathBefore)
+    // console.log(req?.pathBefore)
 }

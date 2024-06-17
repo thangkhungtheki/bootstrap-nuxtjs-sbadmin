@@ -12,7 +12,7 @@
             <i class="fa fa-bars"></i>
           </button>
           <img src="/iconcuoi.jpg" alt="Kitten" class="iconheader"/>
-          ThangKhungTheKi
+          Ten nhan vien
           <!--<button
             @click="togglemenu"
             id="sidebarCollapse"
@@ -39,6 +39,9 @@
             <b-dropdown-item >
               Settings
             </b-dropdown-item>
+            <b-dropdown-item @click="handleLogout">
+              Logout
+            </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-navbar>
@@ -47,12 +50,19 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 export default {
   methods: {
     togglemenu() {
       //this.menuclosed = this.menuclosed ? false : true;
       this.$store.commit("menuToggle");
     },
+    handleLogout(){
+      alert('Click nút logout')
+      Cookies.remove('token')
+      this.$store.commit("cookies/SET_TOKEN_NULL")
+      this.$router.push('/home')
+    }
   },
 };
 </script>

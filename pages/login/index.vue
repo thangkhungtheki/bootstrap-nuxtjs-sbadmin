@@ -23,7 +23,7 @@
 import {mapActions, mapState} from 'vuex'
 
 export default {
-  middleware: 'checkreq',
+  middleware: [],
   data() {
     return {
       xlogin: {
@@ -38,7 +38,7 @@ export default {
       token: state => state.cookies.token,
       stateCouter: state => state.device.couterstate,
     }),
-
+  
   },
   methods: {
     ...mapActions({
@@ -58,7 +58,7 @@ export default {
           this.$router.push('/user')
         }
         else{
-            this.$router.push('/login')
+            this.$router.push('/home')
           }
         // .then(data => {
         //   if(data.token !== null){

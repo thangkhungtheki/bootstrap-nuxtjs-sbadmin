@@ -3,7 +3,7 @@ export const state = () => ({
     menuclosed: true,
     counter: 0,
     authenticated: false,
-    token: null,
+    
     username: '',
     password: ''
 })
@@ -59,6 +59,6 @@ export const actions = {
         context.commit('setUser', login)
         
     },
-    
+     
 }
 
