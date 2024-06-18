@@ -52,8 +52,8 @@ export default {
             username: this.xlogin.username,
             password: this.xlogin.password
         })
-        await this.login(result?.data?.token)
-        console.log(result)
+        await this.login(result.data.token)
+        console.log(result.data.token)
         if(this.token){
           this.$router.push('/user')
         }

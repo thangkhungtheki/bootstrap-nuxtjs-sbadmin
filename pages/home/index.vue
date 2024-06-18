@@ -1,35 +1,104 @@
 <template>
   <div>
-    <h1>Chào mừng đến trang chủ</h1>
-    <h1>{{ token ? token : 'Chưa đăng nhập'}}</h1>
-    <div>
+    <b-container>
+      <section class="vh-100" style="background-color: #9A616D;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+              <div class="card" style="border-radius: 1rem;">
+                <div class="row g-0">
+                  <div class="col-md-6 col-lg-5 d-none d-md-block">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                  </div>
+                  <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+
+                      <form>
+
+                        <div class="d-flex align-items-center mb-3 pb-1">
+                          <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                          <span class="h1 fw-bold mb-0">Logo</span>
+                        </div>
+
+                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                        <div v-if="!token">
+                          <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                            <label class="form-label" for="form2Example17">Email address</label>
+                          </div>
+
+                          <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                            <label class="form-label" for="form2Example27">Password</label>
+                          </div>
+                          <div class="pt-1 mb-4">
+                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                          </div>
+                        </div>
+                        <div class="pt-1 mb-4" v-if="token">
+                          <b-button variant="success" @click="handledangnhap">Đăng nhập</b-button>
+                          <b-button variant="danger" @click="handlelogout">Đăng xuất</b-button>
+                        </div>
+
+                        <!-- <a class="small text-muted" href="#!">Forgot password?</a>
+                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!" style="color: #393f81;">Register here</a></p> -->
+                        <b-container>
+                          <a href="#!" class="small text-muted">Terms of use.</a>
+                          <a href="#!" class="small text-muted">Privacy policy</a>
+                        </b-container>
+
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <h1>
+        {{ token ? token : 'Chưa đăng nhập'}}
+      </h1>
+      <div>
         <b-button variant="success" @click="handledangnhap">Đăng nhập</b-button>
-    </div>
+        <b-button variant="danger" @click="handlelogout">Đăng xuất</b-button>
+      </div> -->
+    </b-container>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
-export default {
+  import {
+    mapState
+  } from 'vuex'
+  import Cookies from 'js-cookie'
+  export default {
     // layout: 'areaAdmin',
     // middleware: 'authhome'
     computed: {
-    ...mapState({
-      token: state => state.cookies.token,
-      stateCouter: state => state.device.couterstate,
-    })
+      ...mapState({
+        token: state => state.cookies.token,
+        stateCouter: state => state.device.couterstate,
+      })
     },
 
     methods: {
-        handledangnhap(){
-            if(this.token){
-                this.$router.push('/user')
-            }else{
-                this.$router.push('/login')
-            }
+      handledangnhap() {
+        if (this.token) {
+          this.$router.push('/user')
+        } else {
+          this.$router.push('/login')
         }
+      },
+      handlelogout() {
+        alert('Click Logout button')
+        Cookies.remove('token')
+        this.$store.commit("cookies/SET_TOKEN_NULL")
+        this.$router.push('/home')
+      }
     }
-}
+  }
 </script>
 
 <style>
