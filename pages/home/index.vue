@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container>
-      <section class="vh-100" style="background-color: #9A616D;">
+      <section class="vh-100" style="background-color: #0b5ee3;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
@@ -12,43 +12,46 @@
                   </div>
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
+                      <client-only>
+                        <b-form @submit="handlelogin" v-if="show">
 
-                      <form>
-
-                        <div class="d-flex align-items-center mb-3 pb-1">
-                          <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                          <span class="h1 fw-bold mb-0">Logo</span>
-                        </div>
-
-                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
-                        <div v-if="!token">
-                          <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="email" id="form2Example17" class="form-control form-control-lg" />
-                            <label class="form-label" for="form2Example17">Email address</label>
+                          <div class="d-flex align-items-center mb-3 pb-1">
+                            <i class="fas fa-cubes fa-2x me-3" style="color: #0b5ee3;"></i>
+                            <span class="h1 fw-bold mb-0">Logo</span>
                           </div>
 
-                          <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="password" id="form2Example27" class="form-control form-control-lg" />
-                            <label class="form-label" for="form2Example27">Password</label>
-                          </div>
-                          <div class="pt-1 mb-4">
-                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block" type="button">Login</button>
-                          </div>
-                        </div>
-                        <div class="pt-1 mb-4" v-if="token">
-                          <b-button variant="success" @click="handledangnhap">Đăng nhập</b-button>
-                          <b-button variant="danger" @click="handlelogout">Đăng xuất</b-button>
-                        </div>
+                          <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;" v-if="!token">Sign into your account</h5>
+                          <div v-if="!token">
+                            <div data-mdb-input-init class="form-outline mb-4">
+                              <b-form-input  class="form-control form-control-lg" v-model="xlogin.username"  required />
+                              <b-form-invalid-feedback >Không được để trống.</b-form-invalid-feedback>
+                              <label class="form-label" for="form2Example17">Username</label>
+                            </div>
 
-                        <!-- <a class="small text-muted" href="#!">Forgot password?</a>
+                            <div data-mdb-input-init class="form-outline mb-4">
+                              <b-form-input type="password" id="form2Example27" class="form-control form-control-lg" v-model="xlogin.password" required/>
+                              <label class="form-label" for="form2Example27">Password</label>
+                            </div>
+                            <div class="pt-1 mb-4">
+                              <b-button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block" type="submit">Login</b-button>
+                            </div>
+                          </div>
+                          <div class="pt-1 mb-4" v-if="token">
+                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Tài khoản <b>{{ username }}</b> đã đăng nhập </h5>
+
+                            <b-button variant="success" @click="handledangnhap">Đăng nhập</b-button>
+                            <b-button variant="danger" @click="handlelogout">Đăng xuất</b-button>
+                          </div>
+
+                          <!-- <a class="small text-muted" href="#!">Forgot password?</a>
                         <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!" style="color: #393f81;">Register here</a></p> -->
-                        <b-container>
-                          <a href="#!" class="small text-muted">Terms of use.</a>
-                          <a href="#!" class="small text-muted">Privacy policy</a>
-                        </b-container>
+                          <b-container>
+                            <a href="#!" class="small text-muted">Terms of use.</a>
+                            <a href="#!" class="small text-muted">Privacy policy</a>
+                          </b-container>
 
-                      </form>
-
+                        </b-form>
+                      </client-only>
                     </div>
                   </div>
                 </div>
@@ -70,20 +73,57 @@
 
 <script>
   import {
-    mapState
+    mapState,
+    mapActions
   } from 'vuex'
   import Cookies from 'js-cookie'
   export default {
     // layout: 'areaAdmin',
     // middleware: 'authhome'
+    data() {
+      return {
+        xlogin: {
+          username: '',
+          password: ''
+        },
+        show: true
+      }
+    },
     computed: {
       ...mapState({
         token: state => state.cookies.token,
         stateCouter: state => state.device.couterstate,
-      })
+        username: state => state.cookies.username
+      }),
+      
     },
 
     methods: {
+      ...mapActions({
+        actUser: 'ActUser',
+        'login': 'cookies/onlogin'
+      }),
+      async handlelogin(event) {
+        // this.actUser(this.xlogin)
+        event.preventDefault()
+        // alert('Click Login button')
+        let result = await this.$axios.post('http://127.0.0.1:3000/express/dangnhap', {
+          username: this.xlogin.username,
+          password: this.xlogin.password
+        })
+        
+        
+        
+        if (result.data.token) {
+          await this.login(result.data)
+          // console.log(result.data)
+          this.$router.push('/user')
+        } else {
+          this.xlogin.username = ''
+          this.xlogin.password = ''
+          this.$router.push('/home')
+        }
+      },
       handledangnhap() {
         if (this.token) {
           this.$router.push('/user')
@@ -92,11 +132,16 @@
         }
       },
       handlelogout() {
-        alert('Click Logout button')
+        
+        // alert('Click Logout button')
         Cookies.remove('token')
         this.$store.commit("cookies/SET_TOKEN_NULL")
+        this.$store.commit("cookies/SET_USER_NULL")
+        Cookies.remove('username')
         this.$router.push('/home')
-      }
+        
+      },
+      
     }
   }
 </script>

@@ -60,7 +60,9 @@ export default {
     handleLogout(){
       alert('Click nút logout')
       Cookies.remove('token')
+      Cookies.remove('username')
       this.$store.commit("cookies/SET_TOKEN_NULL")
+      this.$store.commit("cookies/SET_USER_NULL")
       this.$router.push('/home')
     }
   },

@@ -19,8 +19,8 @@ app.get('/getJSON', (req, res) => {
 })
 app.post('/dangnhap', async(req, res) => {
   console.log('[Server Middleware express] >>> đăng nhập')
-  let id = req.body.username
-  let pass  = req.body.password
+  let id = req.body.username 
+  let pass  = req.body.password 
   try {
     const result = await axios.post('http://127.0.0.1:4000/jwt',{
     username: id,
