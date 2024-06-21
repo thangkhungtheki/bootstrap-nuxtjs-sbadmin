@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <form @submit.prevent="userLogin">
       <div>
         <label>Username</label>
@@ -17,8 +18,10 @@
 </template>
 
 <script>
+
 export default {
   middleware:['auth'],
+  
   data() {
     return {
       login: {

@@ -40,45 +40,15 @@ export default {
   components: {
     inputcomponent
   },
-  // middleware: ["checkcontext"],
-
-  //  async asyncData({ $axios }) {
-  //   try {
-  //     const response =  await $axios.$get('http://127.0.0.1:4000/')
-  //     .then(data=>{
-  //       console.log(data)
-  //     })
-      
-  //   } catch (error) {
-      
-  //   }
-
-  // },
-
-  // asyncData({ $axios }) {
-  //   return $axios.$get('http://127.0.0.1:4000/')
-  //     .then(data => {
-  //       console.log(data);
-  //       return {
-  //         // return any data you want to use in your component
-  //         responseData: data
-  //       };
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //       return {
-  //         // handle error, return some default or empty data if needed
-  //         responseData: null
-  //       };
-  //     });
-  // },
+  
    mounted() {
     
   },
   computed: {
     ...mapState({
       counter: state => state.counter,
-      stateCouter: state => state.device.couterstate
+      stateCouter: state => state.device.couterstate,
+      username: state => state.cookies.username
     })
   },
   created(){
@@ -112,7 +82,7 @@ export default {
       console.log('Socket-client on: ', msg)
     },
     emitserver() {
-      socket.emit('chat','hello server')
+      socket.emit('chat', this.username + ' : hello server')
       console.log('Client emit chat on server')
     },
     additem(){

@@ -27,7 +27,7 @@ app.post('/dangnhap', async(req, res) => {
     password: pass
   })
   if(result.data){
-    console.log(result.data)
+    //console.log(result.data)
     return res.json(result.data)
   }else{
     return res.json({token: null})

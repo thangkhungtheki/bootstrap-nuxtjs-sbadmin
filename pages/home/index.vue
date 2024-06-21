@@ -1,6 +1,9 @@
 <template>
   <div>
+    
     <b-container>
+    
+    
       <section class="vh-100" style="background-color: #0b5ee3;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -12,7 +15,14 @@
                   </div>
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
+                      <alertdanger 
+                        ref="alertComponent"
+                        message="Nhập sai tên hoặc mật khẩu"
+                        :dismissSecs="5"
+                        variant="danger"
+                      ></alertdanger>
                       <client-only>
+
                         <b-form @submit="handlelogin" v-if="show">
 
                           <div class="d-flex align-items-center mb-3 pb-1">
@@ -76,16 +86,21 @@
     mapState,
     mapActions
   } from 'vuex'
+  import alertdanger from "@/components/alert/danger.vue"
   import Cookies from 'js-cookie'
   export default {
     // layout: 'areaAdmin',
     // middleware: 'authhome'
+    components: {
+      alertdanger
+    },
     data() {
       return {
         xlogin: {
           username: '',
           password: ''
         },
+        
         show: true
       }
     },
@@ -104,8 +119,11 @@
         'login': 'cookies/onlogin'
       }),
       async handlelogin(event) {
-        // this.actUser(this.xlogin)
         event.preventDefault()
+        
+        
+        // this.actUser(this.xlogin)
+        // event.preventDefault()
         // alert('Click Login button')
         let result = await this.$axios.post('http://127.0.0.1:3000/express/dangnhap', {
           username: this.xlogin.username,
@@ -113,23 +131,33 @@
         })
         
         
-        
-        if (result.data.token) {
+        if(result.data.token) {
           await this.login(result.data)
           // console.log(result.data)
           this.$router.push('/user')
-        } else {
-          this.xlogin.username = ''
-          this.xlogin.password = ''
-          this.$router.push('/home')
+        }else{
+          this.clearInput()
+          this.showAlert()
+          // this.$router.push('/home')
         }
+          
+        
       },
+      
+      showAlert() {
+        this.$refs.alertComponent.showAlert();
+      },
+  
       handledangnhap() {
         if (this.token) {
           this.$router.push('/user')
         } else {
           this.$router.push('/login')
         }
+      },
+      clearInput() {
+        this.xlogin.username = ''
+        this.xlogin.password = ''
       },
       handlelogout() {
         
