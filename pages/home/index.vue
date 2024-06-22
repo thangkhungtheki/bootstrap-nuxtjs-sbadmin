@@ -34,7 +34,7 @@
                           <div v-if="!token">
                             <div data-mdb-input-init class="form-outline mb-4">
                               <b-form-input  class="form-control form-control-lg" v-model="xlogin.username"  required />
-                              <b-form-invalid-feedback >Không được để trống.</b-form-invalid-feedback>
+                              <!-- <b-form-invalid-feedback >Không được để trống.</b-form-invalid-feedback> -->
                               <label class="form-label" for="form2Example17">Username</label>
                             </div>
 
@@ -125,7 +125,7 @@
         // this.actUser(this.xlogin)
         // event.preventDefault()
         // alert('Click Login button')
-        let result = await this.$axios.post('http://127.0.0.1:3000/express/dangnhap', {
+        let result = await this.$axios.post('/express/dangnhap', {
           username: this.xlogin.username,
           password: this.xlogin.password
         })

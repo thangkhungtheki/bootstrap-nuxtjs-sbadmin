@@ -69,7 +69,7 @@ export default {
     },
     getData(){
       try {
-        const data = this.$axios.$get('http://127.0.0.1:4000/')
+        const data = this.$axios.$get(process.env.BACKEND_URL)
         .then(data=>{
           console.log(data)
         })
