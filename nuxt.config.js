@@ -44,8 +44,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '@/plugins/initAuth', mode: 'client' } // đây là cookies chỉ chạy đc ở phía client
-     
+    // đây là cookies chỉ chạy đc ở phía client
+    // ko cần xài plugin này lun
+    // { src: '@/plugins/initAuth', mode: 'client' } 
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
