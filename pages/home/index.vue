@@ -1,9 +1,6 @@
 <template>
-  <div>
-    
+  <div> 
     <b-container>
-    
-    
       <section class="vh-100" style="background-color: #0b5ee3;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -11,7 +8,8 @@
               <div class="card" style="border-radius: 1rem;">
                 <div class="row g-0">
                   <div class="col-md-6 col-lg-5 d-none d-md-block">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                    <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" /> -->
+                    <img src="" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
                   </div>
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
@@ -39,7 +37,15 @@
                             </div>
 
                             <div data-mdb-input-init class="form-outline mb-4">
-                              <b-form-input type="password" id="form2Example27" class="form-control form-control-lg" v-model="xlogin.password" required/>
+                              <b-input-group>
+                              <b-form-input :type="passwordFieldType" id="form2Example27" class="form-control form-control-lg" v-model="xlogin.password" required/>
+                              
+                              <b-input-group-append>
+                              <b-button @click="togglePasswordVisibility" variant="secondary">
+                                  <i :class="passwordFieldType === 'password' ? 'bi bi-eye-slash' : 'bi-eye'" ></i>
+                              </b-button>
+                              </b-input-group-append>
+                              </b-input-group>
                               <label class="form-label" for="form2Example27">Password</label>
                             </div>
                             <div class="pt-1 mb-4">
@@ -90,7 +96,7 @@
   import Cookies from 'js-cookie'
   export default {
     // layout: 'areaAdmin',
-    // middleware: 'authhome'
+    middleware: [ 'checkcontext' ],
     components: {
       alertdanger
     },
@@ -100,7 +106,7 @@
           username: '',
           password: ''
         },
-        
+        passwordFieldType: 'password',
         show: true
       }
     },
@@ -169,7 +175,9 @@
         this.$router.push('/home')
         
       },
-      
+      togglePasswordVisibility() {
+        this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+      }
     }
   }
 </script>

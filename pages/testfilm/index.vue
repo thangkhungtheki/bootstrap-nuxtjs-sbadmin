@@ -31,7 +31,7 @@
     // servermiddleware: ['~/server/fetch_m3u8.js'],
     layout: 'areaAdmin',
     // cái này chạy trước plugin ở nuxt.config.js
-    middleware: [ 'checkcontext', 'auth'],
+    // middleware: [ 'checkcontext', 'auth'],
     data() {
       return {
         sotap: "94364",

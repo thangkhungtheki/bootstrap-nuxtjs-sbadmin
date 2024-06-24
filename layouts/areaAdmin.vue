@@ -134,7 +134,7 @@
 import { mapState } from "vuex";
 export default {
   name: 'layoutAdmin',
-  middleware: ['mdlayout'],
+  middleware: ['checkcontext', 'auth','mdlayout'],
   data() {
     return {
       //menuclosed: false,

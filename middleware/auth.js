@@ -1,6 +1,6 @@
 // này thường chạy khi load trang là ở phía server
 // const Cookies = require('js-cookie') 
-export default async function ({ store, redirect}) {
+export default function ({ store, redirect}) {
     // req.isAuth = false
     // If the user is not authenticated
 

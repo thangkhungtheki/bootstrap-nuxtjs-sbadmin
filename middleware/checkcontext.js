@@ -1,22 +1,32 @@
-
-
-const Cookies = require('js-cookie') 
+const Cookies = require('js-cookie')
 
 export default function(context){
-    // console.log(Object.keys(context.req.headers))
+// console.log(Object.keys(context.req.headers))
     if(process.server){
-        // console.log(context.req.headers.cookie)
+    // console.log(context.req.headers.cookie)
         if(context.req.headers.cookie){
-            const token1 = context.req.headers.cookie.split("=")
-            const token = token1[1].split(/;/g)
-        // const cookserver = JSON.parse(context.req.headers.cookie)
-        // console.log(token1)
-            context.store.state.cookies.token = token[0]
-            context.store.state.cookies.username = token1[2]
-        // console.log(context.store.state.cookies.token)
-        // console.log(context.store.state.cookies.username)
+            const stringCookies = context.req.headers.cookie
+            // const token = token1[1].split(/;/g)
+            // const cookserver = JSON.parse(context.req.headers.cookie)
+            // console.log(token1)
+            // context.store.state.cookies.token = token[0]
+            // context.store.state.cookies.username = token1[2]
+            // console.log(context.store.state.cookies.token)
+            const tokenMatch = stringCookies.match(/token=([^;]*)/);
+            const usernameMatch = stringCookies.match(/username=([^;]*)/);
+            // console.log(context.req.headers["cookie"])
+            if (tokenMatch && tokenMatch[1] && usernameMatch && usernameMatch[1]) {
+                const token = tokenMatch[1];
+                context.store.state.cookies.token = token
+                const username = usernameMatch[1];
+                context.store.state.cookies.username = username
+                // console.log('Token:', token);
+            } else {
+                // console.log('Token không tồn tại trong cookie.');
+            }
+
         }
-        
+
     }
-    
+
 }

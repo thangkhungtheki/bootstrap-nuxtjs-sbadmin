@@ -91,7 +91,7 @@ export default {
   },
 
   layout: "areaAdmin",
-  middleware: [ 'checkcontext', 'auth'],
+  // middleware: [ 'checkcontext', 'auth'],
   data() {
     return {
       items: [
