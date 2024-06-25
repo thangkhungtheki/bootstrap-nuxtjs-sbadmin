@@ -12,7 +12,7 @@
             <i class="fa fa-bars"></i>
           </button>
           <img src="/iconcuoi.jpg" alt="Kitten" class="iconheader"/>
-          Ten nhan vien
+          Sites Công Ty
           <!--<button
             @click="togglemenu"
             id="sidebarCollapse"

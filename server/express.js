@@ -22,7 +22,7 @@ app.post('/dangnhap', async(req, res) => {
   let id = req.body.username 
   let pass  = req.body.password 
   try {
-    const result = await axios.post('http://127.0.0.1:4000/jwt',{
+    const result = await axios.post(process.env.BACKEND_URL + '/jwt',{
     username: id,
     password: pass
   })

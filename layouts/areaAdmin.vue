@@ -14,8 +14,8 @@
       <div class="py-4 px-3 mb-4">
         <div class="media d-flex align-items-center">
           <div class="media-body">
-            <h4 class="m-0">Jason Doe</h4>
-            <p class="font-weight-light text-muted mb-0">Web developer</p>
+            <h4 class="m-0">{{ $store.state?.cookies?.username }}</h4>
+            <p class="font-weight-light text-muted mb-0">Thuộc bộ phận</p>
           </div>
         </div>
       </div>
