@@ -2,7 +2,7 @@
 <template>
   <!-- <b-table :items="items" :fields="fields"></b-table> -->
  
-
+  
   <div>
     <!-- component modal của v-b-modal.modal-input -->
     <inputcomponent></inputcomponent> 
