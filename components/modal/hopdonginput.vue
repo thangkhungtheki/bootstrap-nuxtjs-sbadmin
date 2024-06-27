@@ -10,7 +10,7 @@
       </ul>
     </div> -->
     
-    <b-modal id="modal-input-hopdong" @show="resetModal" @hidden="resetModal" hide-footer>
+    <b-modal id="modal-input-hopdong" @show="resetModal" @hidden="resetModal" >
       <template #modal-title>
         {{ title }}
       </template>
@@ -22,11 +22,22 @@
           <b-form-input id="age-input" v-model="data.age" required></b-form-input>
         </b-form-group>
         <hr/>
-        <b-button size="md"
-            class="float-right" variant="success" >Sửa</b-button>
         
       </form>
-       
+       <template #modal-footer="{cancel, hide }">
+      <b>{{ data.age }}</b>
+      <!-- Emulate built in modal footer ok and cancel button actions -->
+      <b-button size="sm" variant="success" @click="handleLuu">
+        Lưu
+      </b-button>
+      <b-button size="sm" variant="danger" @click="cancel()">
+        Cancel
+      </b-button>
+      <!-- Button with custom close trigger value -->
+      <b-button size="sm" variant="outline-secondary" @click="hide('forget')">
+        Forget it
+      </b-button>
+    </template>
     </b-modal>
     </div>
   
@@ -53,6 +64,15 @@
         // ageState: null
       }
     },
+    watch: {
+    datatitem: {
+      handler(newVal) {
+        this.data = { ...newVal };
+      },
+      deep: true,
+      immediate: true
+    }
+  },
     // computed: {
     //   nameState() {
     //     return this.name.length > 2 ? true : false
@@ -97,6 +117,9 @@
         this.$nextTick(() => {
           this.$bvModal.hide('modal-prevent-closing')
         })
+      },
+      handleLuu(){
+        alert(this.data.name)
       }
     }
   }

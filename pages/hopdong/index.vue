@@ -29,7 +29,7 @@
                     </ul>
                     <ul>
                         
-                            <b-button  v-b-modal.modal-input-hopdong variant="info" size="sm" @click="handlesua(row.item,$event.target)">Sửa</b-button>
+                            <b-button v-b-modal.modal-input-hopdong variant="info" size="sm" @click="handlesua(row.item)">Sửa</b-button>
                             <b-button class="floatleft" variant="danger" size="sm" @click="handlexoa">Xoá</b-button>
                         
                         
@@ -54,7 +54,9 @@
         ></b-pagination>
       </b-col>
     </div>
-     <modal_hopdong :datatitem="datamodal" :title="modaltitle"></modal_hopdong>
+     <modal_hopdong :datatitem="datamodal" :title="modaltitle">
+
+     </modal_hopdong>
     </div>
    
       
@@ -112,10 +114,10 @@ export default {
             },
             // showmodal: false,
             datamodal: {
-                name: "hahaha",
-                age: 12
+                name: "",
+                age: ''
             },
-            modaltitle: "concac"
+            modaltitle: ""
         }
     },
     // mounted() {
@@ -148,15 +150,20 @@ export default {
             alert('Click nút thêm')
         },
         handlesua(item){
-            alert('Click nút sửa')
+            // console.log(item)
+            // alert('Click nút sửa')
+            this.modaltitle = "Modal - Sửa Hợp Đồng"
+            this.datamodal = {
+                name: item.tenhopdong,
+                age: item._id
+            }
             
         },
         handlexoa(){
             alert('Clich Xoá')
         },
         resetInfoModal() {
-            this.infoModal.title = ''
-            this.infoModal.content = ''
+            
       },
         
     }
