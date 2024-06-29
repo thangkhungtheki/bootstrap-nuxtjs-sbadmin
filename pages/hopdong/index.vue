@@ -32,7 +32,6 @@
                             <b-button v-b-modal.modal-input-hopdong variant="info" size="sm" @click="handlesua(row.item)">Sửa</b-button>
                             <b-button class="floatleft" variant="danger" size="sm" @click="handlexoa">Xoá</b-button>
                         
-                        
                     </ul>
                     
                 </b-card>
@@ -65,6 +64,7 @@
 
 <script>
 import modal_hopdong from '@/components/modal/hopdonginput.vue'
+import { EventBus } from '~/plugins/eventbus'
 export default {
     layout: "areaAdmin",
     components: {
@@ -114,8 +114,11 @@ export default {
             },
             // showmodal: false,
             datamodal: {
-                name: "",
-                age: ''
+                id: "",
+                tenhopdong: '',
+                ngaybatdau: "",
+                ngayketthuc:"",
+                ghichu:""
             },
             modaltitle: ""
         }
@@ -124,28 +127,28 @@ export default {
     //   // Set the initial number of items
     //   this.totalRows = this.items.length
     // },
+    mounted() {
+        this.listenForDataSaved();
+    },
     async asyncData({$axios}) {
-        const data = await $axios.get(process.env.BACKEND_URL + '/hopdong/theodoihopdong')
+        try{
+            const data = await $axios.get(process.env.BACKEND_URL + '/hopdong/theodoihopdong')
         // this.items = data.data
         // console.log(data.data)
         
-        return {
-            items: data.data,
-            totalRows: data.data.length || 1
+            return {
+                items: data.data ? data.data : [],
+                totalRows: data.data.length || 1
+            }
+        }catch{
+            return {
+                items: [],
+                totalRows: 1
+            }
         }
+        
     },
     methods: {
-        // info(item, button) {
-        //     this.infoModal.title = `Id: ${item._id}`
-        //     this.infoModal.content = JSON.stringify(item, null, 2)
-        //     this.$root.$emit('bv::show::modal', this.infoModal.id, button)
-            // this.showmodal = true
-            // this.$root.$emit('bv::show::modal', this.modal_hopdong)
-            // this.datamodal = {
-            //     id: "hahaha",
-            //     name: "hihii"
-            // }
-        // },
         handlethemhopdong(){
             alert('Click nút thêm')
         },
@@ -154,18 +157,35 @@ export default {
             // alert('Click nút sửa')
             this.modaltitle = "Modal - Sửa Hợp Đồng"
             this.datamodal = {
-                name: item.tenhopdong,
-                age: item._id
+                id: item._id,
+                tenhopdong: item.tenhopdong,
+                ngaybatdau: item.ngaybatdau,
+                ngayketthuc: item.ngayketthuc,
+                ghichu: item.ghichu
             }
             
         },
         handlexoa(){
             alert('Clich Xoá')
         },
-        resetInfoModal() {
-            
-      },
-        
+        resetInfoModal() {       
+        },
+        async fetchData() {
+            try{
+                const data = await this.$axios.get(process.env.BACKEND_URL + '/hopdong/theodoihopdong')
+                // console.log(data.data)
+                this.items = data.data
+                this. totalRows = data.data.length || 1
+            }catch{
+                
+            }
+        },
+        listenForDataSaved() {
+            EventBus.$once('data-saved', async () => {
+                await this.fetchData();
+                this.listenForDataSaved(); // Set up listener again for future events
+            });
+        }
     }
 }
 </script>

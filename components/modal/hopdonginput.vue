@@ -15,17 +15,23 @@
         {{ title }}
       </template>
       <form ref="form" @submit.stop.prevent="handleSubmit">
-        <b-form-group label="Name" label-for="name-input" invalid-feedback="Name is required" >
-          <b-form-input id="name-input" v-model="data.name" required></b-form-input>
+        <b-form-group label="Tên hợp đồng" label-for="name-input" invalid-feedback="Name is required" >
+          <b-form-input id="tenhopdong-input" v-model="data.tenhopdong" required></b-form-input>
         </b-form-group>
-        <b-form-group label="Age" invalid-feedback="Age is required">
-          <b-form-input id="age-input" v-model="data.age" required></b-form-input>
+        <b-form-group label="Ngày bắt đầu" invalid-feedback="Age is required">
+          <b-form-input id="ngaybatdau-input" v-model="data.ngaybatdau"  type="date" required></b-form-input>
+        </b-form-group>
+        <b-form-group label="Ngày kết thúc" invalid-feedback="Age is required">
+          <b-form-input id="ngayketthuc-input" v-model="data.ngayketthuc" type="date" required></b-form-input>
+        </b-form-group>
+        <b-form-group label="Ghi chú" invalid-feedback="Age is required">
+          <b-form-textarea id="ghichu-area" v-model="data.ghichu" rows="5"></b-form-textarea>
         </b-form-group>
         <hr/>
         
       </form>
        <template #modal-footer="{cancel, hide }">
-      <b>{{ data.age }}</b>
+      <b>{{ data.id }}</b>
       <!-- Emulate built in modal footer ok and cancel button actions -->
       <b-button size="sm" variant="success" @click="handleLuu">
         Lưu
@@ -44,6 +50,7 @@
 </template>
 
 <script>
+  import { EventBus } from '~/plugins/eventbus'
   export default {
     props: {
       datatitem: {
@@ -118,8 +125,21 @@
           this.$bvModal.hide('modal-prevent-closing')
         })
       },
-      handleLuu(){
-        alert(this.data.name)
+      async handleLuu(){
+        // alert(this.data.id)
+        const result = await this.$axios.$post(process.env.BACKEND_URL + '/hopdong//suahopdong',{
+          id: this.data.id,
+          tenhopdong: this.data.tenhopdong,
+          ngaybatdau: this.data.ngaybatdau,
+          ngayketthuc: this.data.ngayketthuc,
+          ghichu: this.data.ghichu
+        })
+        if(result === 'thanhcong'){
+          EventBus.$emit('data-saved'); // Emit event when data is saved
+          alert(result)
+        } else{
+          alert('Khong thanh cong')
+        }
       }
     }
   }

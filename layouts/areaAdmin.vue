@@ -55,6 +55,17 @@
             Gallery
           </a>
         </li> -->
+        <!-- <li class="nav-item">
+          <p>
+            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+              <b-dropdown id="dropdown-left" text="Left align" 
+              class="m-2">
+                <b-dropdown-item ><nuxt-link to="/hopdong">Hợp Đồng</nuxt-link></b-dropdown-item>
+                <b-dropdown-item href="#">Another action</b-dropdown-item>
+                <b-dropdown-item href="#">Something else here</b-dropdown-item>
+            </b-dropdown>
+          </p>
+        </li> -->
       </ul>
 
       <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">
