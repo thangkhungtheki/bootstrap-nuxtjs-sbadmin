@@ -2,6 +2,7 @@
     <div>
         <h2> Quản Lý Hợp Đồng</h2>
         <hr/>
+        
         <b-button variant="success" @click="handlethemhopdong">Thêm Hợp Đồng</b-button>
          <hr/>
         <b-table striped hover 
@@ -29,7 +30,7 @@
                     </ul>
                     <ul>
                         
-                            <b-button v-b-modal.modal-input-hopdong variant="info" size="sm" @click="handlesua(row.item)">Sửa</b-button>
+                            <b-button variant="info" size="sm" @click="handlesua(row.item)">Sửa</b-button>
                             <b-button class="floatleft" variant="danger" size="sm" @click="handlexoa">Xoá</b-button>
                         
                     </ul>
@@ -37,9 +38,7 @@
                 </b-card>
             </template>
         </b-table>
-        <!-- Info modal -->
-        <!-- <b-modal :id="infoModal.id" :title="infoModal.title" @hide="resetInfoModal">
-        </b-modal> -->
+       
 
     <div>
         <b-col sm="7" md="6" class="my-1">
@@ -53,9 +52,8 @@
         ></b-pagination>
       </b-col>
     </div>
-     <modal_hopdong :datatitem="datamodal" :title="modaltitle">
-
-     </modal_hopdong>
+     <modal_hopdong :datatitem="datamodal" :title="modaltitle"></modal_hopdong>
+    <notifications group="faa" position="top center"/>
     </div>
    
       
@@ -163,6 +161,7 @@ export default {
                 ngayketthuc: item.ngayketthuc,
                 ghichu: item.ghichu
             }
+            this.$bvModal.show("modal-input-hopdong")	
             
         },
         handlexoa(){
@@ -182,6 +181,13 @@ export default {
         },
         listenForDataSaved() {
             EventBus.$once('data-saved', async () => {
+                this.$notify({
+                    group: 'faa',
+                    title: this.datamodal.id,
+                    text: this.datamodal.tenhopdong + ' đã lưu thành công !!!',
+                    duration: -1,
+                    type: "success"
+                });
                 await this.fetchData();
                 this.listenForDataSaved(); // Set up listener again for future events
             });

@@ -5,6 +5,7 @@
   
   <div>
     <!-- component modal của v-b-modal.modal-input -->
+    <notifications group="foo" position="top center"/>
     <inputcomponent></inputcomponent> 
     <h2>Counter: {{ counter }}</h2>
     <h2>StateCouter : {{ stateCouter }} </h2>
@@ -41,7 +42,7 @@ export default {
     inputcomponent
   },
   
-   mounted() {
+  mounted() {
     
   },
   computed: {
@@ -63,6 +64,15 @@ export default {
     }),
     handletang(){
       this.add()
+      setTimeout(()=>{
+      this.$notify({
+        group: 'foo',
+        title: 'Important message',
+        text: 'Hello user! This is a notification!',
+        duration: -1,
+        type: "success"
+      });
+    },2000)
     },
     handlegiam(){
       this.except()

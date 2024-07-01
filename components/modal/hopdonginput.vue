@@ -136,7 +136,7 @@
         })
         if(result === 'thanhcong'){
           EventBus.$emit('data-saved'); // Emit event when data is saved
-          alert(result)
+          
         } else{
           alert('Khong thanh cong')
         }
