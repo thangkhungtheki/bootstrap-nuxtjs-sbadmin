@@ -5,7 +5,7 @@
   
   <div>
     <!-- component modal của v-b-modal.modal-input -->
-    <notifications group="foo" position="top center"/>
+    
     <inputcomponent></inputcomponent> 
     <h2>Counter: {{ counter }}</h2>
     <h2>StateCouter : {{ stateCouter }} </h2>
@@ -35,6 +35,8 @@ import {mapState, mapActions} from 'vuex'
 import inputcomponent from '~/components/modal/input.vue'
 import socket from '~/plugins/socket.js'
 export default {
+  layout: "areaAdmin",
+  // middleware: [ 'checkcontext', 'auth'],
   beforeMount () {
     socket.on('User connected', this.printMsg)
   },
@@ -62,17 +64,18 @@ export default {
       except: 'decrement',
       'tanglen': 'device/tanglen'
     }),
+    showNotification () {
+      this.$notify({
+        type: "success",
+        message: "Hello, I am a notification",
+        hideIcon: true,
+        bottom: true,
+        right: true
+      })
+    },
     handletang(){
       this.add()
-      setTimeout(()=>{
-      this.$notify({
-        group: 'foo',
-        title: 'Important message',
-        text: 'Hello user! This is a notification!',
-        duration: -1,
-        type: "success"
-      });
-    },2000)
+      this.showNotification()
     },
     handlegiam(){
       this.except()
@@ -100,8 +103,7 @@ export default {
     }
   },
 
-  layout: "areaAdmin",
-  // middleware: [ 'checkcontext', 'auth'],
+  
   data() {
     return {
       items: [

@@ -53,7 +53,7 @@
       </b-col>
     </div>
      <modal_hopdong :datatitem="datamodal" :title="modaltitle"></modal_hopdong>
-    <notifications group="faa" position="top center"/>
+    
     </div>
    
       
@@ -179,15 +179,18 @@ export default {
                 
             }
         },
+        showNotification () {
+            this.$notify({
+                type: "success",
+                message: "Hello, I am a notification",
+                hideIcon: true,
+                bottom: true,
+                right: true
+            })
+        },
         listenForDataSaved() {
             EventBus.$once('data-saved', async () => {
-                this.$notify({
-                    group: 'faa',
-                    title: this.datamodal.id,
-                    text: this.datamodal.tenhopdong + ' đã lưu thành công !!!',
-                    duration: -1,
-                    type: "success"
-                });
+                // this.showNotification()
                 await this.fetchData();
                 this.listenForDataSaved(); // Set up listener again for future events
             });

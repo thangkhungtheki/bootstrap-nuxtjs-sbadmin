@@ -1,19 +1,16 @@
 <template>
   <div>
-    <!-- <b-button v-b-modal.modal-prevent-closing>Open Modal</b-button> -->
-
-    <!-- <div class="mt-3" >
-      Submitted Names:
-      <div v-if="submittedNames.length === 0">--</div>
-      <ul v-else class="mb-0 pl-3">
-        <li v-for="name in submittedNames" :key="name">{{ name }}</li>
-      </ul>
-    </div> -->
     
     <b-modal id="modal-input-hopdong" @show="resetModal" @hidden="resetModal" >
       <template #modal-title>
         {{ title }}
       </template>
+      <alertdanger 
+                        ref="alertComponent"
+                        message="Đã Lưu database thành công"
+                        :dismissSecs="10"
+                        variant="success"
+                      ></alertdanger>
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group label="Tên hợp đồng" label-for="name-input" invalid-feedback="Name is required" >
           <b-form-input id="tenhopdong-input" v-model="data.tenhopdong" required></b-form-input>
@@ -30,19 +27,19 @@
         <hr/>
         
       </form>
-       <template #modal-footer="{cancel, hide }">
+       <template #modal-footer="{cancel}">
       <b>{{ data.id }}</b>
       <!-- Emulate built in modal footer ok and cancel button actions -->
       <b-button size="sm" variant="success" @click="handleLuu">
-        Lưu
+        Lưu Database
       </b-button>
-      <b-button size="sm" variant="danger" @click="cancel()">
-        Cancel
+      <b-button size="sm" variant="outline-secondary" @click="cancel()">
+        Huỷ
       </b-button>
       <!-- Button with custom close trigger value -->
-      <b-button size="sm" variant="outline-secondary" @click="hide('forget')">
+      <!-- <b-button size="sm" variant="outline-secondary" @click="hide('forget')">
         Forget it
-      </b-button>
+      </b-button> -->
     </template>
     </b-modal>
     </div>
@@ -51,7 +48,12 @@
 
 <script>
   import { EventBus } from '~/plugins/eventbus'
+  import alertdanger from "@/components/alert/danger.vue"
+
   export default {
+    components:{
+      alertdanger
+    },
     props: {
       datatitem: {
         type: Object,
@@ -125,9 +127,13 @@
           this.$bvModal.hide('modal-prevent-closing')
         })
       },
+      showAlert() {
+        this.$refs.alertComponent.showAlert();
+      },
+  
       async handleLuu(){
         // alert(this.data.id)
-        const result = await this.$axios.$post(process.env.BACKEND_URL + '/hopdong//suahopdong',{
+        const result = await this.$axios.$post(process.env.BACKEND_URL + '/hopdong/suahopdong',{
           id: this.data.id,
           tenhopdong: this.data.tenhopdong,
           ngaybatdau: this.data.ngaybatdau,
@@ -136,7 +142,7 @@
         })
         if(result === 'thanhcong'){
           EventBus.$emit('data-saved'); // Emit event when data is saved
-          
+          this.showAlert()
         } else{
           alert('Khong thanh cong')
         }
