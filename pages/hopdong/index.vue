@@ -29,17 +29,12 @@
                         <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
                     </ul>
                     <ul>
-                        
-                            <b-button variant="info" size="sm" @click="handlesua(row.item)">Sửa</b-button>
-                            <b-button class="floatleft" variant="danger" size="sm" @click="handlexoa">Xoá</b-button>
-                        
-                    </ul>
-                    
+                        <b-button variant="info" size="sm" @click="handlesua(row.item)">Sửa</b-button>
+                        <b-button class="floatleft" variant="danger" size="sm" @click="handlexoa">Xoá</b-button>
+                    </ul>                  
                 </b-card>
             </template>
         </b-table>
-       
-
     <div>
         <b-col sm="7" md="6" class="my-1">
         <b-pagination
@@ -52,14 +47,9 @@
         ></b-pagination>
       </b-col>
     </div>
-     <modal_hopdong :datatitem="datamodal" :title="modaltitle"></modal_hopdong>
-    <notifications group="faa" position="top center"/>
-    </div>
-   
-      
-   
+     <modal_hopdong :datatitem="datamodal" :title="modaltitle"></modal_hopdong>    
+    </div>  
 </template>
-
 <script>
 import modal_hopdong from '@/components/modal/hopdonginput.vue'
 import { EventBus } from '~/plugins/eventbus'
@@ -143,8 +133,7 @@ export default {
                 items: [],
                 totalRows: 1
             }
-        }
-        
+        }      
     },
     methods: {
         handlethemhopdong(){
