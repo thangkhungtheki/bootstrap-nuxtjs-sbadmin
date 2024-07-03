@@ -94,7 +94,7 @@ export default {
     }
 },
   server: {
-    host: '0.0.0.0',
+    host: '192.168.2.134',
     port: 3000
   },
 
