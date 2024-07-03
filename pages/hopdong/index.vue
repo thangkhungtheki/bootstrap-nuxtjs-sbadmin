@@ -53,7 +53,7 @@
       </b-col>
     </div>
      <modal_hopdong :datatitem="datamodal" :title="modaltitle"></modal_hopdong>
-    <notifications group="faa" position="top center"/>
+    <p> <notifications group="faa" position="top center"/> </p>
     </div>
    
       

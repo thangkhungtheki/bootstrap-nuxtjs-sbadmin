@@ -115,7 +115,7 @@
         token: state => state.cookies.token,
         stateCouter: state => state.device.couterstate,
         username: state => state.cookies.username
-      }),
+      })
       
     },
 
