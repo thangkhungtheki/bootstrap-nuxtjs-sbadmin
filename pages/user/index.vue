@@ -70,7 +70,8 @@ export default {
         message: "Hello, I am a notification",
         hideIcon: true,
         bottom: true,
-        right: true
+        right: true,
+        closeDelay: 15000
       })
     },
     handletang(){
