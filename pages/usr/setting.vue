@@ -1,5 +1,5 @@
 <template>
-
+     <b-container fluid="sm">
     <div>
         <h1> Thông in chung </h1>
         
@@ -9,7 +9,7 @@
         </div>
         <hr />
         
-       <b-container fluid="sm">
+      
 
             <form ref="form" @submit.prevent="handleSubmit">
                 <b-form-group >
@@ -48,11 +48,11 @@
                     <b-button type="submit" variant="success">Xác nhận đổi MK</b-button>
                 </b-form-group>
             </form>
-       </b-container>
+       
         
         <hr/>  
     </div>
-
+</b-container>
 </template>
 
 <script>
@@ -74,7 +74,14 @@
         },
         methods: {
             handleSubmit(){
-                alert('hahaha')
+                if(this.password1 !== this.password2){
+                    this.showNotification('warning','Mật khẩu mới và xác nhận không giống nhau')
+                }else{
+                    this.showNotification('success','Đổi Mật Khẩu Thành Công')
+                    this.password1 = null
+                    this.password2 = null
+                }
+                //alert('hahaha')
                 console.log("username: ", this.username)
                 console.log("password: ", this.password1)
             },
@@ -83,7 +90,17 @@
             },
             togglePasswordVisibility2(){
                 this.passwordFieldType2 = this.passwordFieldType2 === 'password' ? 'text' : 'password';
-            }
+            },
+             showNotification (type, msg) {
+                this.$notify({
+                    type: type,
+                    message: msg,
+                    hideIcon: true,
+                    bottom: true,
+                    right: true,
+                    closeDelay: 5000
+                })
+            },
         }
     }
 </script>

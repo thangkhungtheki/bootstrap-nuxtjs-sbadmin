@@ -53,6 +53,7 @@
 <script>
 import modal_hopdong from '@/components/modal/hopdonginput.vue'
 import { EventBus } from '~/plugins/eventbus'
+import {mapState} from 'vuex'
 export default {
     layout: "areaAdmin",
     components: {
@@ -118,9 +119,20 @@ export default {
     mounted() {
         this.listenForDataSaved();
     },
-    async asyncData({$axios}) {
+    computed:{
+        ...mapState({
+            token: state => state.cookies.token
+        })
+    },
+
+    async asyncData({$axios, store}) {
+        // console.log(store.state.cookies.token)
         try{
-            const data = await $axios.get(process.env.BACKEND_URL + '/hopdong/theodoihopdong')
+            const data = await $axios.get(process.env.BACKEND_URL + '/hopdong/theodoihopdong',{
+                // headers:{
+                //         "authorization": 'Bearer ' + store.state.cookies.token
+                //     }
+            })
         // this.items = data.data
         // console.log(data.data)
         
@@ -160,7 +172,11 @@ export default {
         },
         async fetchData() {
             try{
-                const data = await this.$axios.get(process.env.BACKEND_URL + '/hopdong/theodoihopdong')
+                const data = await this.$axios.get(process.env.BACKEND_URL + '/hopdong/theodoihopdong',{
+                    // headers:{
+                    //     "authorization": 'Bearer' + this.token
+                    // }
+                })
                 // console.log(data.data)
                 this.items = data.data
                 this. totalRows = data.data.length || 1
