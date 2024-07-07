@@ -48,7 +48,9 @@ export default {
     // đây là cookies chỉ chạy đc ở phía client
     // ko cần xài plugin này lun
     // { src: '@/plugins/initAuth', mode: 'client' } 
-    '@/plugins/eventbus.js'
+    '@/plugins/eventbus.js',
+    { src: '@/plugins/vue-notification.js', mode: 'client' } 
+   
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

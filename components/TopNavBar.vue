@@ -35,12 +35,14 @@
           </b-nav-item-dropdown> -->
 
           <b-nav-item-dropdown text="User" right>
-            <b-dropdown-item href="#">Account</b-dropdown-item>
-            <b-dropdown-item >
-              Settings
+            <b-dropdown-item @click="handlesetting">
+              Tài Khoản
             </b-dropdown-item>
+            <!-- <b-dropdown-item >
+              Settings
+            </b-dropdown-item> -->
             <b-dropdown-item @click="handleLogout">
-              Logout
+              Đăng xuất
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -51,21 +53,41 @@
 
 <script>
 import Cookies from 'js-cookie'
+import {mapState} from 'vuex'
 export default {
+  computed: {
+    ...mapState({
+      username: state => state.cookies.username
+    })
+  },
   methods: {
     togglemenu() {
       //this.menuclosed = this.menuclosed ? false : true;
       this.$store.commit("menuToggle");
     },
     handleLogout(){
-      alert('Click nút logout')
+      this.showNotification(this.username + ": đã đăng xuất thành công")
       Cookies.remove('token')
       Cookies.remove('username')
       this.$store.commit("cookies/SET_TOKEN_NULL")
       this.$store.commit("cookies/SET_USER_NULL")
       this.$router.push('/home')
+      
+    },
+    showNotification (msg) {
+      this.$notify({
+        type: "success",
+        message: msg,
+        hideIcon: false,
+        bottom: true,
+        right: true
+      })
+    },
+    handlesetting(){
+      this.$router.push('/usr/setting')
     }
   },
+
 };
 </script>
 

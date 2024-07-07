@@ -43,7 +43,6 @@
     <modal_hopdong :datatitem="datamodal" :title="modaltitle"> </modal_hopdong>
   </div>
 </template>
-
 <script>
   import modal_hopdong from "@/components/modal/hopdonginput.vue";
   import {

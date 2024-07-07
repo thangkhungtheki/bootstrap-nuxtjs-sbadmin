@@ -22,7 +22,8 @@ export default function(context){
                 context.store.state.cookies.token = token
                 const username = usernameMatch[1];
                 context.store.state.cookies.username = username
-                // console.log('Token:', token);
+                // context.req.headers.authorization = 'Bearer ' + token;
+                // console.log(context.req.headers);
             } else {
                 // console.log('Token không tồn tại trong cookie.');
             }
