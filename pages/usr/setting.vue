@@ -56,7 +56,9 @@
 </template>
 
 <script>
+    import Cookies from 'js-cookie'
     import {mapState} from 'vuex'
+
     export default {
         layout: "areaAdmin",
         data() {
@@ -69,21 +71,36 @@
         },
         computed: {
             ...mapState({
-                username: state => state.cookies.username
+                username: state => state.cookies.username,
+                token: state => state.cookies.token
             })
         },
         methods: {
-            handleSubmit(){
+            async handleSubmit(){
                 if(this.password1 !== this.password2){
                     this.showNotification('warning','Mật khẩu mới và xác nhận không giống nhau')
                 }else{
-                    this.showNotification('success','Đổi Mật Khẩu Thành Công')
+                    let result = await this.$axios.post('http://127.0.0.1:4000/update-password',{
+                        username: this.username,
+                        newPassword: this.password2,
+                    },
+                    {
+                        headers: {
+                            'authorization': "Bearer " + this.token
+                        }
+                    })
+                    this.showNotification('success',"Đổi mật khẩu thành công !!!")
                     this.password1 = null
                     this.password2 = null
+                    Cookies.remove('token')
+                    Cookies.remove('username')
+                    this.$store.commit("cookies/SET_TOKEN_NULL")
+                    this.$store.commit("cookies/SET_USER_NULL")
+                    this.$router.push('/home')
                 }
                 //alert('hahaha')
-                console.log("username: ", this.username)
-                console.log("password: ", this.password1)
+                // console.log("username: ", this.username)
+                // console.log("password: ", this.password1)
             },
             togglePasswordVisibility1(){
                 this.passwordFieldType1 = this.passwordFieldType1 === 'password' ? 'text' : 'password';
@@ -98,7 +115,7 @@
                     hideIcon: true,
                     bottom: true,
                     right: true,
-                    closeDelay: 5000
+                    closeDelay: 10000
                 })
             },
         }
