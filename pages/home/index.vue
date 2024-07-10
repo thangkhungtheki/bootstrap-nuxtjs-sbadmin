@@ -13,12 +13,7 @@
                   </div>
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
-                      <alertdanger 
-                        ref="alertComponent"
-                        message="Nhập sai tên hoặc mật khẩu"
-                        :dismissSecs="5"
-                        variant="danger"
-                      ></alertdanger>
+                      
                       <client-only>
 
                         <b-form @submit="handlelogin" v-if="show">
@@ -58,7 +53,7 @@
                             <b-button variant="success" @click="handledangnhap">Đăng nhập</b-button>
                             <b-button variant="danger" @click="handlelogout">Đăng xuất</b-button>
                           </div>
-
+                          
                           <!-- <a class="small text-muted" href="#!">Forgot password?</a>
                         <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!" style="color: #393f81;">Register here</a></p> -->
                           <b-container>
@@ -67,6 +62,12 @@
                           </b-container>
 
                         </b-form>
+                        <alertdanger 
+                            ref="alertComponent"
+                            message="Nhập sai tên hoặc mật khẩu"
+                            :dismissSecs="5"
+                            variant="danger"
+                          ></alertdanger>
                       </client-only>
                     </div>
                   </div>

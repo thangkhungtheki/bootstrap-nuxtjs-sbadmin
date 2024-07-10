@@ -1,63 +1,238 @@
 <template>
-  <b-table>
-    <thead>
-      <tr>
-        <th v-for="(items, index) in daysOrder" :key="index">
-
-          {{ items }}
-
-        </th>
+  <div>
+  <client-only>
+    <b-container fluid>
+      <div><h2>Tháng: {{ thang }} - Năm: {{ nam }}</h2></div>
+    <table>
+      
+      <tr class="mauhead"> 
+        <td><b>Thứ</b></td>
+        <td v-for="items, index in thangngay" :key="index" :class="getDayClass(items.thu)" >
+          {{ items.thu}}
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <!-- <tr>
-          <td v-for="(day, index) in $data._thang.value" :key="index">
-            {{ day }}
-          </td>
-        </tr> -->
-    </tbody>
-  </b-table>
+      <tr>
+        <td>DL</td>
+        <td v-for="items, index in thangngay" :key="index">
+          {{ items.ngay}}
+        </td>
+      </tr>
+      <tr>  
+        <td>AL</td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="mausang"><b>Sảnh</b></td>
+        <td class="text-center mausang" :colspan="xulycolspan()" >
+         <strong>Sáng</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          SAPPHIRE
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td >
+         RUBY 1
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td >
+         RUBY 2
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          DIAMOND 1
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          DIAMOND 2
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+           PLATINUM
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <!-- Chiều -->
+      
+      <tr>
+        <td class="mautoi"><b>Sảnh</b></td>
+        <td class="text-center mautoi" :colspan="xulycolspan()" >
+         <strong>Chiều</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          SAPPHIRE
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td >
+         RUBY 1
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td >
+         RUBY 2
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          DIAMOND 1
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          DIAMOND 2
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+           PLATINUM
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <tr>
+        <td>
+           OUTSIDE
+        </td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr>
+      <!-- <tr> 
+        <td class="mautoi"><b>Thứ</b></td>
+        <td v-for="items, index in thangngay" :key="index" :class="getDayClass(items.thu)">
+          {{ items.thu}}
+        </td>
+      </tr>
+      <tr>
+        <td>DL</td>
+        <td v-for="items, index in thangngay" :key="index">
+          {{ items.ngay}}
+        </td>
+      </tr>
+      <tr>
+        <td>AL</td>
+        <td v-for="items, index in thangngay" :key="index">
+          
+        </td>
+      </tr> -->
+    </table>
+    </b-container>
+  </client-only>
+  
+  </div>
 </template>
 
 <script>
+
 export default {
+  layout: 'areaAdmin',
   data() {
     return {
-      thang: 
-         [
-          { '5': 1, '6': 2, '7': 3, cn: 4 },
-          { '2': 5, '3': 6, '4': 7, '5': 8, '6': 9, '7': 10, cn: 11 },
-          { '2': 12, '3': 13, '4': 14, '5': 15, '6': 16, '7': 17, cn: 18 },
-          { '2': 19, '3': 20, '4': 21, '5': 22, '6': 23, '7': 24, cn: 25 },
-          { '2': 26, '3': 27, '4': 28, '5': 29, '6': 30, '7': 31 }
-        ],
-      daysOrder: ['2', '3', '4', '5', '6', '7', 'cn','2', '3', '4', '5', '6', '7', 'cn','2', '3', '4', '5', '6', '7', 'cn','2', '3', '4', '5', '6', '7', 'cn'],
-      days: []
+      thangngay: [],
+      fields: [] ,
+      thang: null,
+      nam: null  ,
+      
     }
   },
-  computed: {
-    // flatDays() {
-    //   return this.flattenArrayUsingFor(this._thang.weeks);
-    // }
+  watch: {
+    thang: {
+      handlergetAPI() {
+        this.fetchLunarCalendar();
+      },
+      deep: true
+    },
+    nam: {
+      handlergetAPI() {
+        this.fetchLunarCalendar();
+      },
+      deep: true
+    }
+  },
+  async mounted () {
+    
+  },
+  async asyncData({query, $axios}) {
+    let thang = query.thang
+    let nam = query.nam
+    let resuls =  await $axios.$get(process.env.BACKEND_URL + "/hopdong/lichthang?thang=" + thang + '&nam='+ nam)
+    return({
+      thangngay: resuls,
+      thang: thang,
+      nam: nam,
+      
+    })
   },
   methods: {
-    flattenArrayUsingFor(arr) {
-      let result = [];
-      for (let i = 0; i < arr.length; i++) {
-        const week = arr[i];
-        for (const day in week) {
-          if (week.hasOwnProperty(day)) {
-            result.push(week[day]);
-          }
-        }
-      }
-      return result;
+    async fetchLunarCalendar(){
+      let result = await this.$axios.$get(process.env.BACKEND_URL + "/hopdong/lichthang?thang=" + this.thang + '&nam='+ this.nam)
+      return({
+        thangngay: result
+      })
     },
+    getDayClass(items) {
+      return (items === 'T7' || items === 'CN') ? 'red' : '';
+    },
+    xulycolspan(){
+      // console.log(this.tongsongay)
+      return this.thangngay.length 
+    }
   }
 }
 </script>
 
 <style scoped>
+body {
+  font-size: .8rem; /* Thay đổi kích thước font theo ý muốn */
+}
+.red {
+ 
+  color: rgb(235, 10, 10);
+}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -72,5 +247,14 @@ td {
 
 th {
   background-color: #f2f2f2;
+}
+.mausang{
+  background-color: #faf5df;
+}
+.mautoi{
+  background-color: #cef4f798;
+}
+.mauhead{
+  background-color: #7a7cf098;
 }
 </style>
