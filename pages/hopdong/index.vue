@@ -113,20 +113,16 @@
     mounted() {
       this.listenForDataSaved();
     },
-    async asyncData({
-      $axios
-    }) {
+    async asyncData({$axios}) {
       try {
         const data = await $axios.get(
           process.env.BACKEND_URL + "/hopdong/theodoihopdong"
         );
-        // this.items = data.data
-        // console.log(data.data)
-
         return {
           items: data.data ? data.data : [],
           totalRows: data.data.length || 1,
         };
+        //--- sử dụng promise ---
       } catch {
         return {
           items: [],

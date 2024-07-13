@@ -2,9 +2,14 @@
   <div>
   <client-only>
     <b-container fluid>
-      <div><h2>Tháng: {{ thang }} - Năm: {{ nam }}</h2></div>
-    <table>
       
+    <table>
+      <tr>
+        <td></td>
+        <td class="text-center" :colspan="xulycolspan()" >
+         <h3>Tháng: {{ thang }} - Năm: {{ nam }} </h3>
+        </td>
+      </tr>
       <tr class="mauhead"> 
         <td><b>Thứ</b></td>
         <td v-for="items, index in thangngay" :key="index" :class="getDayClass(items.thu)" >
@@ -12,13 +17,13 @@
         </td>
       </tr>
       <tr>
-        <td>DL</td>
+        <td class="mauduong">DL</td>
         <td v-for="items, index in thangngay" :key="index">
           {{ items.ngay}}
         </td>
       </tr>
       <tr>  
-        <td>AL</td>
+        <td class="mauam">AL</td>
         <td v-for="items, index in thangngay" :key="index">
           
         </td>
@@ -179,29 +184,32 @@ export default {
       
     }
   },
-  watch: {
-    thang: {
-      handlergetAPI() {
-        this.fetchLunarCalendar();
-      },
-      deep: true
-    },
-    nam: {
-      handlergetAPI() {
-        this.fetchLunarCalendar();
-      },
-      deep: true
-    }
-  },
+  // watch: {
+  //   thang: {
+  //     handlergetAPI() {
+  //       this.fetchLunarCalendar();
+  //     },
+  //     deep: true
+  //   },
+  //   nam: {
+  //     handlergetAPI() {
+  //       this.fetchLunarCalendar();
+  //     },
+  //     deep: true
+  //   }
+  // },
   async mounted () {
     
   },
   async asyncData({query, $axios}) {
     let thang = query.thang
     let nam = query.nam
-    let resuls =  await $axios.$get(process.env.BACKEND_URL + "/hopdong/lichthang?thang=" + thang + '&nam='+ nam)
+    let promisehopdong =  $axios.$get(process.env.BACKEND_URL + "/hopdong/lichthang?thang=" + thang + '&nam='+ nam)
+    let resultPromise = await Promise.all([
+      promisehopdong
+    ])
     return({
-      thangngay: resuls,
+      thangngay: resultPromise[0],
       thang: thang,
       nam: nam,
       
@@ -227,7 +235,7 @@ export default {
 
 <style scoped>
 body {
-  font-size: .8rem; /* Thay đổi kích thước font theo ý muốn */
+  font-size: x-small;
 }
 .red {
  
@@ -256,5 +264,11 @@ th {
 }
 .mauhead{
   background-color: #7a7cf098;
+}
+.mauduong{
+  background-color: #f07aab4d;
+}
+.mauam{
+  background-color: #7ae2f056;
 }
 </style>
