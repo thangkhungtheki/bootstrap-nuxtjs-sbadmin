@@ -25,7 +25,8 @@
       <tr>  
         <td class="mauam">AL</td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <span v-if="items.am == 1 || index == 0 ">{{ items.am}}/{{ items.amthang }} </span>
+          <span v-else> {{ items.am}} </span>
         </td>
       </tr>
       <tr>
