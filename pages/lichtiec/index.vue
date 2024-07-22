@@ -17,16 +17,16 @@
         </td>
       </tr>
       <tr>
-        <td class="mauduong">DL</td>
+        <td class="mauam">DL</td>
         <td v-for="items, index in thangngay" :key="index">
           {{ items.ngay}}
         </td>
       </tr>
       <tr>  
-        <td class="mauam">AL</td>
+        <td class="mauduong">AL</td>
         <td v-for="items, index in thangngay" :key="index">
           <span v-if="items.am == 1 || index == 0 ">{{ items.am}}/{{ items.amthang }} </span>
-          <span v-else> {{ items.am}} </span>
+          <span v-else> {{ items.am }} </span>
         </td>
       </tr>
       <tr>
