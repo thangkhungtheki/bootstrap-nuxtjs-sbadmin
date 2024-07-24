@@ -25,7 +25,7 @@
       <tr>  
         <td class="mauduong">AL</td>
         <td v-for="items, index in thangngay" :key="index">
-          <span v-if="items.am == 1 || index == 0 ">{{ items.am}}/{{ items.amthang }} </span>
+          <span v-if="items.am == 1 || index == 0 ">{{ items.am }}/{{ items.amthang }} </span>
           <span v-else> {{ items.am }} </span>
         </td>
       </tr>
@@ -40,7 +40,9 @@
           SAPPHIRE
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <div class='fixcell' v-if="items.sanh=='sp' && items.soban && items.buoi == 'sang'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -48,7 +50,9 @@
          RUBY 1
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+           <div class='fixcell' v-if="items.sanh=='rb1' && items.soban && items.buoi == 'sang'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -56,7 +60,9 @@
          RUBY 2
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+         <div class='fixcell' v-if="items.sanh=='rb2' && items.soban && items.buoi == 'sang'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -64,7 +70,9 @@
           DIAMOND 1
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <div class='fixcell' v-if="items.sanh=='dp1' && items.soban && items.buoi == 'sang'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -72,7 +80,9 @@
           DIAMOND 2
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <div class='fixcell' v-if="items.sanh=='dp2' && items.soban && items.buoi == 'sang'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -80,7 +90,9 @@
            PLATINUM
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <div class='fixcell' v-if="items.sanh=='pla' && items.soban && items.buoi == 'sang'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <!-- Chiều -->
@@ -96,7 +108,9 @@
           SAPPHIRE
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <div class='fixcell' v-if="items.sanh=='sp' && items.soban && items.buoi == 'chieu'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -104,7 +118,9 @@
          RUBY 1
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <div class='fixcell' v-if="items.sanh=='rb1' && items.soban && items.buoi == 'chieu'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -112,7 +128,9 @@
          RUBY 2
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <div class='fixcell' v-if="items.sanh=='rb2' && items.soban && items.buoi == 'chieu'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -120,7 +138,9 @@
           DIAMOND 1
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+         <div class='fixcell' v-if="items.sanh=='dp1' && items.soban && items.buoi == 'chieu'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -128,7 +148,9 @@
           DIAMOND 2
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <div class='fixcell' v-if="items.sanh=='dp2' && items.soban && items.buoi == 'chieu'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
@@ -136,15 +158,25 @@
            PLATINUM
         </td>
         <td v-for="items, index in thangngay" :key="index">
-          
+          <div class='fixcell' v-if="items.sanh=='pla' && items.soban && items.buoi == 'chieu'">
+            <b-button v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)"> {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <tr>
-        <td>
+        <td class='blue'>
            OUTSIDE
         </td>
+        <!-- <span v-for="items, index in thangngay" :key="index"> 
+          <td :class='hangletiec(items.loaitiec)' v-if="items.sanh=='out'">
+              {{ items.soban }}
+          </td>
+        </span> -->
         <td v-for="items, index in thangngay" :key="index">
-          
+          <!-- <b-button v-b-modal.modal-tall variant="danger" :class='hangletiec(items)' v-if="items.sanh=='out'" >{{ items.soban }}</b-button> -->
+          <div class='fixcell' v-if="items.sanh=='out' && items.soban">
+            <b-button v-b-modal.modal-tall  class='btnfixfullcell' squared :variant="hangletiec(items)" @click="handleClick(items)" > {{ items.soban }} </b-button>
+          </div>
         </td>
       </tr>
       <!-- <tr> 
@@ -168,7 +200,11 @@
     </table>
     </b-container>
   </client-only>
-  
+  <b-modal id="modal-tall" title="Overflowing Content">
+    <p class="my-4">
+      {{ itemthongtin }}
+    </p>
+  </b-modal>
   </div>
 </template>
 
@@ -182,7 +218,7 @@ export default {
       fields: [] ,
       thang: null,
       nam: null  ,
-      
+      itemthongtin: null
     }
   },
   // watch: {
@@ -229,12 +265,37 @@ export default {
     xulycolspan(){
       // console.log(this.tongsongay)
       return this.thangngay.length 
+    },
+    hangletiec(item){
+      if(item.loaitiec == 'cuoi' && item.soban){
+        // console.log(item)
+        return "danger"
+      }else if(item.loaitiec == 'out' && item.soban){
+        return "primary"
+      }
+    },
+    handleClick(items){
+      this.itemthongtin = items
     }
+
   }
 }
 </script>
 
 <style scoped>
+.btnfixfullcell{
+  font-weight: inherit;
+  font-size: inherit;
+}
+.fixcell {
+  /* background-color: crimson; */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: ivory;
+}
 body {
   font-size: x-small;
 }
@@ -252,6 +313,7 @@ td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+  position: relative;
 }
 
 th {
@@ -271,5 +333,8 @@ th {
 }
 .mauam{
   background-color: #7ae2f056;
+}
+.blue{
+  background-color: rgba(10, 10, 240, 0.349);
 }
 </style>
