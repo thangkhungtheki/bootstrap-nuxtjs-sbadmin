@@ -4,3 +4,6 @@
 .nuxt-link-exact-active {
   color: green;
 }
+body{
+  zoom: 85%;
+}

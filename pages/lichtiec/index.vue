@@ -313,7 +313,8 @@ export default {
   color: ivory;
 }
 body {
-  font-size: x-small;
+ 
+  
 }
 .red {
  
