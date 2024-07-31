@@ -32,7 +32,7 @@
       <tr>
         <td class="mausang"><b>Sảnh</b></td>
         <td class="text-center mausang" :colspan="xulycolspan()" >
-         <strong>Sáng</strong>
+         <strong>Trưa</strong>
         </td>
       </tr>
       <tr>
@@ -56,7 +56,7 @@
             <b-tooltip :target="index + 'rb1sang'" :variant="hangdletooltip(items)">{{ items.thongtin?.sang.rb1 }}</b-tooltip>
           </div>
           <div class='fixcell' v-else-if="items.thongtin?.sang.grb?.sanh=='grb' && items.thongtin?.sang.grb.soban && items.thongtin?.sang.grb.buoi == 'sang'">
-            <b-button :id= "index + 'rb1sang'" v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items.thongtin?.sang.grb)" @click="handleClick(items)"> {{ items.thongtin?.sang.grb.soban }} </b-button>
+            <b-button :id= "index + 'rb1sang'" v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items.thongtin?.sang.grb)" @click="handleClick(items)"> &uarr;{{ items.thongtin?.sang.grb.soban }} </b-button>
             <b-tooltip :target="index + 'rb1sang'" :variant="hangdletooltip(items)">{{ items.thongtin?.sang.grb }}</b-tooltip>
           </div>
         </td>
@@ -71,7 +71,7 @@
             <b-tooltip :target="index + 'rb2sang'" :variant="hangdletooltip(items)">{{ items.thongtin?.sang.rb2 }}</b-tooltip>
           </div>
           <div class='fixcell' v-else-if="items.thongtin?.sang.grb?.sanh=='grb' && items.thongtin?.sang.grb.soban && items.thongtin?.sang.grb.buoi == 'sang'">
-            <b-button :id= "index + 'rb1sang'"  class='btnfixfullcell' squared :variant="hangletiec(items.thongtin?.sang.grb)" @click="handleClick(items)"> &uarr;&uarr;&uarr; </b-button>
+            <b-button :id= "index + 'rb1sang'"  class='btnfixfullcell' squared :variant="hangletiec(items.thongtin?.sang.grb)" @click="handleClick(items)"> &uarr;&uarr; </b-button>
             <b-tooltip :target="index + 'rb1sang'" :variant="hangdletooltip(items)">{{ items.thongtin?.sang.grb }}</b-tooltip>
           </div>
         </td>
@@ -210,6 +210,7 @@
         <td>DL</td>
         <td v-for="items, index in thangngay" :key="index">
           {{ items.ngay}}
+
         </td>
       </tr>
       <tr>
@@ -221,11 +222,11 @@
     </table>
     </b-container>
   </client-only>
-  <b-modal id="modal-tall" title="Overflowing Content">
+  <!-- <b-modal id="modal-tall" title="Overflowing Content">
     <p class="my-4">
       {{ itemthongtin }}
     </p>
-  </b-modal>
+  </b-modal> -->
   </div>
 </template>
 
@@ -324,11 +325,12 @@ export default {
   color: ivory;
 }
 body {
- font-size:11px
+ font-size:12px
   
 }
 .btn{
-  font-size: 12px
+  font-size: 12px;
+  padding: 0
 }
 .red {
  
@@ -339,17 +341,15 @@ table {
   border-collapse: collapse;
 }
 
-th,
+
 td {
   border: 1px solid #0000002d;
-  padding: 5px;
+  padding: 3px;
   text-align: center;
   position: relative;
 }
 
-th {
-  background-color: #f2f2f2;
-}
+
 .mausang{
   background-color: #faf5df;
 }
