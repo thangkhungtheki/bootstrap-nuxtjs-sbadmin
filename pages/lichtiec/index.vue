@@ -7,7 +7,7 @@
       <tr>
         <td></td>
         <td class="text-center" :colspan="xulycolspan()" >
-         <h3>Tháng: {{ thang }} - Năm: {{ nam }} </h3>
+         <h6> Tháng: {{ thang }} - Năm: {{ nam }} </h6>
         </td>
       </tr>
       <tr class="mauhead"> 
@@ -300,8 +300,12 @@ export default {
 
 <style scoped>
 .btnfixfullcell{
-  font-weight: inherit;
-  font-size: inherit;
+ 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .fixcell {
   /* background-color: crimson; */
@@ -312,23 +316,26 @@ export default {
   left: 0;
   color: ivory;
 }
-body {
- 
-  
-}
+
 .red {
  
   color: rgb(235, 10, 10);
 }
 table {
   width: 100%;
+  height: auto;
   border-collapse: collapse;
 }
-
+body{
+  font-size: 12px,
+}
+.btn{
+  font-size: .8rem
+}
 th,
 td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 5px;
   text-align: center;
   position: relative;
 }
