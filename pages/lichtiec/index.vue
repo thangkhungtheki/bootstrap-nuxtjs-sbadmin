@@ -38,7 +38,7 @@
         </tr>
         <tr>
           <td>
-            SAPHIRE
+            SAPPHIRE
           </td>
           <td v-for="items, index in thangngay" :key="index">
             <div class='fixcell' v-if="items.thongtin?.sang.sp?.sanh=='sp' && items.thongtin?.sang.sp.soban && items.thongtin?.sang.sp.buoi == 'sang'">
@@ -135,7 +135,7 @@
         </tr>
         <tr>
           <td>
-            SAPHIRE
+            SAPPHIRE
           </td>
           <td v-for="items, index in thangngay" :key="index">
             <div class='fixcell' v-if="items.thongtin?.chieu.sp?.sanh=='sp' && items.thongtin?.chieu.sp.soban && items.thongtin?.chieu.sp.buoi == 'chieu'">
