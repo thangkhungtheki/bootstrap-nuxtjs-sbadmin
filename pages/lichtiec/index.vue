@@ -7,7 +7,7 @@
       <tr>
         <td></td>
         <td class="text-center" :colspan="xulycolspan()" >
-         <h6> Tháng: {{ thang }} - Năm: {{ nam }} </h6>
+         <h3>Tháng: {{ thang }} - Năm: {{ nam }} </h3>
         </td>
       </tr>
       <tr class="mauhead"> 
@@ -32,7 +32,7 @@
       <tr>
         <td class="mausang"><b>Sảnh</b></td>
         <td class="text-center mausang" :colspan="xulycolspan()" >
-         <strong>Sáng</strong>
+         <strong>Trưa</strong>
         </td>
       </tr>
       <tr>
@@ -55,6 +55,10 @@
             <b-button :id= "index + 'rb1sang'" v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items.thongtin?.sang.rb1)" @click="handleClick(items)"> {{ items.thongtin?.sang.rb1.soban }} </b-button>
             <b-tooltip :target="index + 'rb1sang'" :variant="hangdletooltip(items)">{{ items.thongtin?.sang.rb1 }}</b-tooltip>
           </div>
+          <div class='fixcell' v-else-if="items.thongtin?.sang.grb?.sanh=='grb' && items.thongtin?.sang.grb.soban && items.thongtin?.sang.grb.buoi == 'sang'">
+            <b-button :id= "index + 'rb1sang'" v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items.thongtin?.sang.grb)" @click="handleClick(items)"> &uarr;{{ items.thongtin?.sang.grb.soban }} </b-button>
+            <b-tooltip :target="index + 'rb1sang'" :variant="hangdletooltip(items)">{{ items.thongtin?.sang.grb }}</b-tooltip>
+          </div>
         </td>
       </tr>
       <tr>
@@ -65,6 +69,10 @@
          <div class='fixcell' v-if="items.thongtin?.sang.rp2?.sanh=='rb2' && items.thongtin?.sang.dp2.soban && items.thongtin?.sang.rp2.buoi == 'sang'">
             <b-button :id= "index + 'rb2sang'" v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items.thongtin?.sang.rb2)" @click="handleClick(items)"> {{ items.thongtin?.sang.dp2.soban }} </b-button>
             <b-tooltip :target="index + 'rb2sang'" :variant="hangdletooltip(items)">{{ items.thongtin?.sang.rb2 }}</b-tooltip>
+          </div>
+          <div class='fixcell' v-else-if="items.thongtin?.sang.grb?.sanh=='grb' && items.thongtin?.sang.grb.soban && items.thongtin?.sang.grb.buoi == 'sang'">
+            <b-button :id= "index + 'rb1sang'"  class='btnfixfullcell' squared :variant="hangletiec(items.thongtin?.sang.grb)" @click="handleClick(items)"> &uarr;&uarr; </b-button>
+            <b-tooltip :target="index + 'rb1sang'" :variant="hangdletooltip(items)">{{ items.thongtin?.sang.grb }}</b-tooltip>
           </div>
         </td>
       </tr>
@@ -202,6 +210,7 @@
         <td>DL</td>
         <td v-for="items, index in thangngay" :key="index">
           {{ items.ngay}}
+
         </td>
       </tr>
       <tr>
@@ -300,12 +309,8 @@ export default {
 
 <style scoped>
 .btnfixfullcell{
- 
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  font-weight: inherit;
+  font-size: inherit;
 }
 .fixcell {
   /* background-color: crimson; */
@@ -316,7 +321,10 @@ export default {
   left: 0;
   color: ivory;
 }
-
+body {
+ 
+  
+}
 .red {
  
   color: rgb(235, 10, 10);
@@ -326,23 +334,16 @@ table {
   height: auto;
   border-collapse: collapse;
 }
-body{
-  font-size: 12px,
-}
-.btn{
-  font-size: .8rem
-}
+
 th,
 td {
   border: 1px solid #ddd;
-  padding: 5px;
+  padding: 8px;
   text-align: center;
   position: relative;
 }
 
-th {
-  background-color: #f2f2f2;
-}
+
 .mausang{
   background-color: #faf5df;
 }
