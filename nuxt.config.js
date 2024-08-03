@@ -1,4 +1,4 @@
-import middware from './middleware/middware'
+
 
 require('dotenv').config()
 
@@ -132,11 +132,7 @@ export default {
     SOCKET_URL : process.env.SOCKET_URL || 'http://127.0.0.1:4500'
   },
   
-  rules: {
-    // allow debugger during development
-    // 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    "vue/no-use-v-if-with-v-for": "off"
-  }
+  
 }
 
 
