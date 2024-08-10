@@ -49,7 +49,8 @@ export default {
     // ko cần xài plugin này lun
     // { src: '@/plugins/initAuth', mode: 'client' } 
     '@/plugins/eventbus.js',
-    { src: '@/plugins/vue-notification.js', mode: 'client' } 
+    { src: '@/plugins/vue-notification.js', mode: 'client' } ,
+    '~/plugins/axios.js'
    
   ],
 

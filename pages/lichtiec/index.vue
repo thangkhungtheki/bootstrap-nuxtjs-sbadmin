@@ -1,5 +1,5 @@
 <template>
-   <!-- eslint-disable -->
+   
     <div>
     <client-only>
       <b-container fluid>
@@ -72,6 +72,7 @@
           <td >
            RUBY 2
           </td>
+          <!-- eslint-disable -->
           <td v-for="items, index in thangngay" :key="index" v-if="items.thongtin?.sang.grb?.sanh !=='grb'">
            <div class='fixcell' v-if="items.thongtin?.sang.rp2?.sanh=='rb2' && items.thongtin?.sang.dp2.soban && items.thongtin?.sang.rp2.buoi == 'sang'">
               <b-button :id= "index + 'rb2sang'" v-b-modal.modal-tall class='btnfixfullcell' squared :variant="hangletiec(items.thongtin?.sang.rb2)" @click="handleClick(items)"> {{ items.thongtin?.sang.dp2.soban }} </b-button>
@@ -82,6 +83,7 @@
                 <b-button variant="outline-light" class='btnfixfullcell' >+</b-button>
             </div>
           </td>
+          <!-- eslint-enabled -->
         </tr>
         <tr>
           <td>

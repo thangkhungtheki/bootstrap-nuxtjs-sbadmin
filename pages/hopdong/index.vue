@@ -87,7 +87,7 @@
           },
           "actions",
         ],
-        // totalRows: 1,
+        totalRows: 1,
         currentPage: 1,
         perPage: 50,
         infoModal: {
@@ -113,23 +113,29 @@
     mounted() {
       this.listenForDataSaved();
     },
-    async asyncData({$axios}) {
-      try {
-        const data = await $axios.get(
-          process.env.BACKEND_URL + "/hopdong/theodoihopdong"
-        );
-        return {
-          items: data.data ? data.data : [],
-          totalRows: data.data.length || 1,
-        };
-        //--- sử dụng promise ---
-      } catch {
-        return {
-          items: [],
-          totalRows: 1,
-        };
-      }
+
+    // async asyncData({$axios}) {
+    //   try {
+    //     const data = await $axios.get(
+    //       process.env.BACKEND_URL + "/hopdong/theodoihopdong"
+    //     );
+    //     return {
+    //       items: data.data ? data.data : [],
+    //       totalRows: data.data.length || 1,
+    //     };
+    //     //--- sử dụng promise ---
+    //   } catch {
+    //     return {
+    //       items: [],
+    //       totalRows: 1,
+    //     };
+    //   }
+    // },
+    
+    asyncData({store}){
+
     },
+
     methods: {
       handlethemhopdong() {
         alert("Click nút thêm");
