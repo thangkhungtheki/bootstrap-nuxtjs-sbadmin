@@ -1,5 +1,11 @@
-export default function ({ $axios }) {
+export default function ({ $axios , env}, inject) {
+  // Create a custom axios instance
+  const api = $axios.create({
+  })
 
-    console.log('This is plugins')
+  // Set baseURL to something different
+  api.setBaseURL(env.BACKEND_URL)
 
+  // Inject to context as $api
+  inject('api', api)
 }
