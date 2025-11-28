@@ -26,10 +26,29 @@
 
       <ul class="nav flex-column bg-white mb-0 ">
         <li class="nav-item" >
-          <p class="nav-link text-dark font-italic bg-light">
+          <!-- <p class="nav-link text-dark font-italic bg-light">
             <i class="fa fa-th-large mr-3 text-primary fa-fw "></i>
             <nuxt-link to="/user">User</nuxt-link>
-          </p>
+          </p> -->
+          <b-dropdown
+            class="nav-link text-dark font-italic bg-light dropdown-custom"
+            variant="link"
+            no-caret
+            toggle-class="text-dark font-italic bg-light"
+          >
+          <template #button-content>
+            <p class="nav-link text-dark font-italic bg-light">
+              <i class="fa fa-th-large mr-3 text-primary fa-fw "></i>
+              USER
+            </p>
+          </template>
+          
+            <b-dropdown-item >
+              <nuxt-link to="/user">User</nuxt-link>
+            </b-dropdown-item>
+            <b-dropdown-item >Cài đặt</b-dropdown-item>
+            <b-dropdown-item >Quản lý User</b-dropdown-item>
+          </b-dropdown>
         </li>
         <li class="nav-item">
           <p class="nav-link text-dark font-italic bg-light">
